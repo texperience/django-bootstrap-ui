@@ -19,6 +19,9 @@ setup(
     url='https://github.com/timorieber/django-bootstrap-ui',
     author='Timo Rieber',
     author_email='dev@timorieber.de',
+    install_requires=[
+        'Django>=1.7.7,<1.8',
+    ],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
