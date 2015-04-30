@@ -10,7 +10,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='django-bootstrap-ui',
     version='0.1-alpha1',
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests']),
     include_package_data=True,
     license='ISC License',
     description='This aims to be a powerful Django app to ease the integration of the popular Bootstrap UI framework'
