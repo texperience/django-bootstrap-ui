@@ -35,7 +35,7 @@ class HtmlTagNode(BaseNode):
                     '%r tag only allows %r for %r' % (self.tag_name, ', '.join(self.allowed_tags), 'use_tag')
                 )
 
-            scope['use_css_classes'] = self.default_css_classes.copy()
+            scope['use_css_classes'] = self.default_css_classes[:]
 
             if 'add_css_classes' in scope:
                 scope['use_css_classes'] += scope['add_css_classes'].split()
