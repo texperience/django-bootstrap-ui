@@ -1,0 +1,10 @@
+# .coveragerc to control coverage.py
+[run]
+source = bootstrap_ui
+branch = True
+
+[report]
+ignore_errors = True
+
+[html]
+directory = htmlcov
