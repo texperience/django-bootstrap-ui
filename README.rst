@@ -20,11 +20,38 @@ popular Bootstrap UI framework (http://getbootstrap.com).
 Quick start
 -----------
 
-1. Add ``bootstrap_ui`` to your ``INSTALLED_APPS`` setting
-   like this::
+1. Add ``bootstrap_ui`` to your ``INSTALLED_APPS`` setting::
 
     INSTALLED_APPS = (
         ...
         'bootstrap_ui',
         ...
     )
+
+2. Load ``bootstrap_ui_tags`` in your template::
+
+    {% load bootstrap_ui_tags %}
+
+3. Use bootstrap components through intuitive template tags::
+
+    {% listgroup %}
+        {% listgroupitem %}
+            Your raw text.
+        {% endlistgroupitem %}
+        {% listgroupitem %}
+            You may also use a {{ context_variable }}.
+        {% endlistgroupitem %}
+    {% endlistgroup %}
+
+4. Some bootstrap components support different html tags, to change the default add a parameter::
+
+    {% listgroup use_tag="div" %}
+        ...
+        Your list group content goes here.
+        ...
+    {% endlistgroup %}
+
+Supported bootstrap components
+------------------------------
+
+* List group (http://getbootstrap.com/components/#list-group)
