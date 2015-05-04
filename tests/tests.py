@@ -59,6 +59,7 @@ class HtmlTagNodeTest(SimpleTestCase):
 
 class ListGroupTagsTest(SimpleTestCase):
     SAMPLE_LINK = 'http://example.org'
+    SAMPLE_LABEL = 'Linklabel'
 
     LIST_GROUP_START = mark_safe('<ul class="list-group">')
     LIST_GROUP_END = mark_safe('</ul>')
@@ -80,7 +81,8 @@ class ListGroupTagsTest(SimpleTestCase):
 
     TEMPLATE_LINK = Template(
         '{% load bootstrap_ui_tags %}'
-        '{% listgroupitem use_tag="a" link=link %}'
+        '{% listgroupitem use_tag="a" link=sample_link %}'
+        '{{ sample_label }}'
         '{% endlistgroupitem %}'
     )
 
@@ -105,9 +107,8 @@ class ListGroupTagsTest(SimpleTestCase):
         self.assertIn(self.LIST_GROUP_ITEM_END, rendered)
 
     def test_list_group_item_link_is_rendered(self):
-        rendered = self.TEMPLATE_LINK.render(Context({'link': self.SAMPLE_LINK}))
-        self.assertIn(self.LIST_GROUP_ITEM_LINK_START, rendered)
-        self.assertIn(self.LIST_GROUP_ITEM_LINK_END, rendered)
+        rendered = self.TEMPLATE_LINK.render(Context({'sample_link': self.SAMPLE_LINK, 'sample_label': self.SAMPLE_LABEL}))
+        self.assertInHTML(self.LIST_GROUP_ITEM_LINK_START + self.SAMPLE_LABEL + self.LIST_GROUP_ITEM_LINK_END, rendered)
 
 
 class PanelTagsTest(SimpleTestCase):
