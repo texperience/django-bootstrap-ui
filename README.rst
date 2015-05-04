@@ -55,3 +55,4 @@ Supported bootstrap components
 ------------------------------
 
 * List group (http://getbootstrap.com/components/#list-group)
+* Panels (http://getbootstrap.com/components/#panels)

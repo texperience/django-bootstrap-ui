@@ -103,3 +103,63 @@ class ListGroupItemNode(BootstrapNode):
             htmltag.set_attribute('href', scope['link'])
 
         return mark_safe(htmltag)
+
+
+@template_tag(register, 'panel')
+class PanelNode(BootstrapNode):
+    """Renders a panel"""
+    # Overwrite BaseNode attributes
+    end_tag_name = 'endpanel'
+
+    # Overwrite HtmlTagNode attributes
+    allowed_tags = ['div']
+    default_css_classes = ['panel', 'panel-default']
+    default_tag = 'div'
+
+
+@template_tag(register, 'panelheading')
+class PanelHeadingNode(BootstrapNode):
+    """Renders a panel heading"""
+    # Overwrite BaseNode attributes
+    end_tag_name = 'endpanelheading'
+
+    # Overwrite HtmlTagNode attributes
+    allowed_tags = ['div']
+    default_css_classes = ['panel-heading']
+    default_tag = 'div'
+
+
+@template_tag(register, 'paneltitle')
+class PanelTitleNode(BootstrapNode):
+    """Renders a panel title"""
+    # Overwrite BaseNode attributes
+    end_tag_name = 'endpaneltitle'
+
+    # Overwrite HtmlTagNode attributes
+    allowed_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+    default_css_classes = ['panel-title']
+    default_tag = 'h3'
+
+
+@template_tag(register, 'panelbody')
+class PanelBodyNode(BootstrapNode):
+    """Renders a panel body"""
+    # Overwrite BaseNode attributes
+    end_tag_name = 'endpanelbody'
+
+    # Overwrite HtmlTagNode attributes
+    allowed_tags = ['div']
+    default_css_classes = ['panel-body']
+    default_tag = 'div'
+
+
+@template_tag(register, 'panelfooter')
+class PanelFooterNode(BootstrapNode):
+    """Renders a panel footer"""
+    # Overwrite BaseNode attributes
+    end_tag_name = 'endpanelfooter'
+
+    # Overwrite HtmlTagNode attributes
+    allowed_tags = ['div']
+    default_css_classes = ['panel-footer']
+    default_tag = 'div'

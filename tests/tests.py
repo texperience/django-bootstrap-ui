@@ -108,3 +108,86 @@ class ListGroupTagsTest(SimpleTestCase):
         rendered = self.TEMPLATE_LINK.render(Context({'link': self.SAMPLE_LINK}))
         self.assertIn(self.LIST_GROUP_ITEM_LINK_START, rendered)
         self.assertIn(self.LIST_GROUP_ITEM_LINK_END, rendered)
+
+
+class PanelTagsTest(SimpleTestCase):
+    SAMPLE_HEADING = 'Lorem ipsum heading'
+    SAMPLE_TITLE = 'Lorem ipsum title'
+    SAMPLE_BODY = 'Lorem ipsum body'
+    SAMPLE_FOOTER = 'Lorem ipsum footer'
+
+    PANEL_START = mark_safe('<div class="panel panel-default">')
+    PANEL_END = mark_safe('</div>')
+
+    PANEL_HEADING_START = mark_safe('<div class="panel-heading">')
+    PANEL_HEADING_END = mark_safe('</div>')
+
+    PANEL_TITLE_START = mark_safe('<h3 class="panel-title">')
+    PANEL_TITLE_END = mark_safe('</h3>')
+
+    PANEL_BODY_START = mark_safe('<div class="panel-body">')
+    PANEL_BODY_END = mark_safe('</div>')
+
+    PANEL_FOOTER_START = mark_safe('<div class="panel-footer">')
+    PANEL_FOOTER_END = mark_safe('</div>')
+
+    TEMPLATE_SIMPLE = Template(
+        '{% load bootstrap_ui_tags %}'
+        '{% panel %}'
+        '{% panelheading %}'
+        '{{ sample_heading }}'
+        '{% endpanelheading %}'
+        '{% panelbody %}'
+        '{{ sample_body }}'
+        '{% endpanelbody %}'
+        '{% panelfooter %}'
+        '{{ sample_footer }}'
+        '{% endpanelfooter %}'
+        '{% endpanel %}'
+    )
+
+    TEMPLATE_TITLE = Template(
+        '{% load bootstrap_ui_tags %}'
+        '{% panel %}'
+        '{% panelheading %}'
+        '{% paneltitle use_tag="h3" %}'
+        '{{ sample_title }}'
+        '{% endpaneltitle %}'
+        '{% endpanelheading %}'
+        '{% endpanel %}'
+    )
+
+    def setUp(self):
+        pass
+
+    def test_panel_is_rendered(self):
+        rendered = self.TEMPLATE_SIMPLE.render(Context({}))
+        self.assertIn(
+            self.PANEL_START
+            + self.PANEL_HEADING_START + self.PANEL_HEADING_END
+            + self.PANEL_BODY_START + self.PANEL_BODY_END
+            + self.PANEL_FOOTER_START + self.PANEL_FOOTER_END
+            + self.PANEL_END, rendered
+        )
+
+    def test_panel_heading_content_is_rendered(self):
+        rendered = self.TEMPLATE_SIMPLE.render(Context({'sample_heading': self.SAMPLE_HEADING}))
+        self.assertInHTML(self.PANEL_HEADING_START + self.SAMPLE_HEADING + self.PANEL_HEADING_END, rendered)
+
+    def test_panel_title_content_is_rendered(self):
+        rendered = self.TEMPLATE_TITLE.render(Context({'sample_title': self.SAMPLE_TITLE}))
+        self.assertInHTML(
+            self.PANEL_START
+            + self.PANEL_HEADING_START + self.PANEL_TITLE_START
+            + self.SAMPLE_TITLE
+            + self.PANEL_TITLE_END + self.PANEL_HEADING_END
+            + self.PANEL_END, rendered
+        )
+
+    def test_panel_body_content_is_rendered(self):
+        rendered = self.TEMPLATE_SIMPLE.render(Context({'sample_body': self.SAMPLE_BODY}))
+        self.assertInHTML(self.PANEL_BODY_START + self.SAMPLE_BODY + self.PANEL_BODY_END, rendered)
+
+    def test_panel_footer_content_is_rendered(self):
+        rendered = self.TEMPLATE_SIMPLE.render(Context({'sample_footer': self.SAMPLE_FOOTER}))
+        self.assertInHTML(self.PANEL_FOOTER_START + self.SAMPLE_FOOTER + self.PANEL_FOOTER_END, rendered)
