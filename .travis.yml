@@ -27,8 +27,8 @@ deploy:
   provider: pypi
   user: timorieber
   password:
-    secure: C1f0vmCSRSeAsbRBVrpVOolZ8bnTqNQZCbj9/6zNRK2kAv+bLnTiAN0iqr8Z4OXbpfa5cAJJvxc1zY/+PnOve3ARYMCOE9j/26OQUc7medo95SYjphOPm9KUjrpu4M+08Brt0uPvGutZ1wprnKuGXY/wrmgg7rGUU8moJxMmR0E=
+    secure: wkVcSUK7wFGTU5OOLiDxxIzHg/bSOTM4lUzmcV98jNJDH6AzF7hypFMw0ZITh0KTqWxDTE/BQ35HX96hSREMy4iKlO2v4CJU6LLIrjCiyCkO1+RDU4RZnbLsVuQPxFD0jcPNJ3eLOnfIXlb08U7XeWtXTb6d6THXdk5JJwSVlok=
   on:
     tags: true
     repo: timorieber/django-bootstrap-ui
-  distributions: "sdist bdist_wheel"
+  distributions: sdist bdist_wheel
