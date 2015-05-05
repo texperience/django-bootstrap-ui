@@ -21,3 +21,13 @@ script:
 # Call subsequent services
 after_success:
   - coveralls
+
+# Automate deployment after success
+deploy:
+  provider: pypi
+  user: timorieber
+  password:
+    secure: C1f0vmCSRSeAsbRBVrpVOolZ8bnTqNQZCbj9/6zNRK2kAv+bLnTiAN0iqr8Z4OXbpfa5cAJJvxc1zY/+PnOve3ARYMCOE9j/26OQUc7medo95SYjphOPm9KUjrpu4M+08Brt0uPvGutZ1wprnKuGXY/wrmgg7rGUU8moJxMmR0E=
+  on:
+    tags: true
+    repo: timorieber/django-bootstrap-ui
