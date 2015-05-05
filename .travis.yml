@@ -31,3 +31,4 @@ deploy:
   on:
     tags: true
     repo: timorieber/django-bootstrap-ui
+  distributions: "sdist bdist_wheel"
