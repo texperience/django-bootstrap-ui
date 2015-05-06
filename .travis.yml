@@ -12,7 +12,7 @@ matrix:
 
 # Package installation
 install:
-  - pip install tox coveralls
+  - pip install tox coveralls wheel
 
 # Run tests
 script:
@@ -21,3 +21,14 @@ script:
 # Call subsequent services
 after_success:
   - coveralls
+
+# Automate deployment after success
+deploy:
+  provider: pypi
+  user: timorieber
+  password:
+    secure: Oj7UR1AiM36IAKXazK5BnwTLOBTWFvyM/qu6/vveDVw4ZmVXYI47nmNsB5C8Miwo4Ww3ls6TsvQ8pvRdDGkSSNZaAie666oaTOQ+PNspfTKPEF91+TV5s4Q1SGfHgh8t6dT91zF11Mb/Ljfni6KK2tuSZGJ1RgNmObZSmH91PPo=
+  on:
+    tags: true
+    repo: timorieber/django-bootstrap-ui
+  distributions: sdist bdist_wheel
