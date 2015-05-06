@@ -101,8 +101,57 @@ This renders the following html code::
         </div>
     </div>
 
-Panel with footer
+Panel with heading
 ******************
+
+Add a nested ``panel-heading``::
+
+    {% panel %}
+        {% panelheading %}
+            Your panel heading
+        {% endpanelheading %}
+        {% panelbody %}
+            Lorem ipsum.
+        {% endpanelbody %}
+    {% endpanel %}
+
+This renders the following html code::
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Your panel heading
+        </div>
+        <div class="panel-body">
+            Lorem ipsum.
+        </div>
+    </div>
+
+In addition you may specify a ``panel-title`` within ``panel-heading`` using ``h1`` to ``h6``::
+
+    {% panel %}
+        {% panelheading %}
+            {% paneltitle use_tag="h1" %}
+                Your panel heading
+            {% panelheading %}
+        {% endpanelheading %}
+        {% panelbody %}
+            Lorem ipsum.
+        {% endpanelbody %}
+    {% endpanel %}
+
+This renders the following html code::
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Your panel heading
+        </div>
+        <div class="panel-body">
+            Lorem ipsum.
+        </div>
+    </div>
+
+Panel with footer
+*****************
 
 Add a nested ``panel-footer``::
 
