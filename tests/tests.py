@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.template import Context, Template
 from django.test import SimpleTestCase
 from django.utils.safestring import mark_safe
@@ -5,6 +6,7 @@ from django.utils.safestring import mark_safe
 
 class HtmlTagNodeTest(SimpleTestCase):
     SAMPLE_CONTENT = 'Lorem ipsum'
+    SAMPLE_CONTENT_UNICODE = 'Lörém ípsüm'
     SAMPLE_CSS = 'simple sample'
     SAMPLE_TAG = 'span'
 
@@ -46,7 +48,11 @@ class HtmlTagNodeTest(SimpleTestCase):
 
     def test_htmltag_content_is_rendered(self):
         rendered = self.TEMPLATE_CONTENT.render(Context({'content': self.SAMPLE_CONTENT}))
-        self.assertIn(self.HTMLTAG_START + self.SAMPLE_CONTENT + self.HTMLTAG_END, rendered)
+        self.assertInHTML(self.HTMLTAG_START + self.SAMPLE_CONTENT + self.HTMLTAG_END, rendered)
+
+    def test_htmltag_content_unicode_is_rendered(self):
+        rendered = self.TEMPLATE_CONTENT.render(Context({'content': self.SAMPLE_CONTENT_UNICODE}))
+        self.assertInHTML(self.HTMLTAG_START + self.SAMPLE_CONTENT_UNICODE + self.HTMLTAG_END, rendered)
 
     def test_htmltag_css_classes_are_rendered(self):
         rendered = self.TEMPLATE_CSS.render(Context({'css': self.SAMPLE_CSS}))

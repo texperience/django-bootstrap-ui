@@ -43,6 +43,8 @@ class HtmlTagNode(BaseNode):
             context.render_context[self] = scope
 
         scope = context.render_context[self]
+
+        # Instantiate a html tag from the given scope
         htmltag = getattr(tags, scope['use_tag'])()
 
         if scope['use_css_classes']:
@@ -50,7 +52,7 @@ class HtmlTagNode(BaseNode):
 
         htmltag.add_raw_string(scope['nodelist'].render(context))
 
-        return mark_safe(htmltag) if safe else htmltag
+        return mark_safe(htmltag.render()) if safe else htmltag
 
 
 @template_tag(register, 'bootstraptag')
@@ -102,7 +104,7 @@ class ListGroupItemNode(BootstrapNode):
 
             htmltag.set_attribute('href', scope['link'])
 
-        return mark_safe(htmltag)
+        return mark_safe(htmltag.render())
 
 
 @template_tag(register, 'panel')
