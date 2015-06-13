@@ -111,7 +111,7 @@ class ListGroupItemNode(BootstrapNode):
         scope = context.render_context[self]
 
         if scope['use_tag'] == 'a':
-            if 'link' not in scope:
+            if 'link' not in scope or not scope['link']:
                 raise TemplateSyntaxError(
                     '%r requires keyword argument %r when %r is given' % (self.tag_name, 'link', scope['use_tag'])
                 )

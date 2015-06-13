@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.template import Context, Template
+from django.template import Context, Template, TemplateSyntaxError
 from django.test import SimpleTestCase
 from django.utils.safestring import mark_safe
 
@@ -9,6 +9,7 @@ class HtmlTagNodeTest(SimpleTestCase):
     SAMPLE_CONTENT_UNICODE = 'Lörém ípsüm'
     SAMPLE_CSS = 'simple sample'
     SAMPLE_TAG = 'span'
+    SAMPLE_INVALID_TAG = 'foo'
 
     HTMLTAG_START = mark_safe('<div>')
     HTMLTAG_CSS_CLASSES_START = mark_safe('<div class="' + SAMPLE_CSS + '">')
@@ -44,7 +45,7 @@ class HtmlTagNodeTest(SimpleTestCase):
 
     def test_htmltag_is_rendered(self):
         rendered = self.TEMPLATE_SIMPLE.render(Context({}))
-        self.assertIn(self.HTMLTAG_START + self.HTMLTAG_END, rendered)
+        self.assertInHTML(self.HTMLTAG_START + self.HTMLTAG_END, rendered)
 
     def test_htmltag_content_is_rendered(self):
         rendered = self.TEMPLATE_CONTENT.render(Context({'content': self.SAMPLE_CONTENT}))
@@ -56,11 +57,33 @@ class HtmlTagNodeTest(SimpleTestCase):
 
     def test_htmltag_css_classes_are_rendered(self):
         rendered = self.TEMPLATE_CSS.render(Context({'css': self.SAMPLE_CSS}))
-        self.assertIn(self.HTMLTAG_CSS_CLASSES_START + self.HTMLTAG_END, rendered)
+        self.assertInHTML(self.HTMLTAG_CSS_CLASSES_START + self.HTMLTAG_END, rendered)
 
     def test_htmltag_tag_is_rendered(self):
         rendered = self.TEMPLATE_TAG.render(Context({'tag': self.SAMPLE_TAG}))
-        self.assertIn(self.HTMLTAG_TAG_START + self.HTMLTAG_TAG_END, rendered)
+        self.assertInHTML(self.HTMLTAG_TAG_START + self.HTMLTAG_TAG_END, rendered)
+
+    def test_htmltag_invalid_tag_raises_exception(self):
+        with self.assertRaises(TemplateSyntaxError):
+            self.TEMPLATE_TAG.render(Context({'tag': self.SAMPLE_INVALID_TAG}))
+
+
+class BootstrapTagsTest(SimpleTestCase):
+    HTMLTAG_START = mark_safe('<div class="bs">')
+    HTMLTAG_END = mark_safe('</div>')
+
+    TEMPLATE_SIMPLE = Template(
+        '{% load bootstrap_ui_tags %}'
+        '{% bootstraptag %}'
+        '{% endbootstraptag %}'
+    )
+
+    def setUp(self):
+        pass
+
+    def test_bootstraptag_is_rendered(self):
+        rendered = self.TEMPLATE_SIMPLE.render(Context({}))
+        self.assertInHTML(self.HTMLTAG_START + self.HTMLTAG_END, rendered)
 
 
 class ListGroupTagsTest(SimpleTestCase):
@@ -109,12 +132,15 @@ class ListGroupTagsTest(SimpleTestCase):
 
     def test_list_group_item_default_tag_is_rendered(self):
         rendered = self.TEMPLATE_SIMPLE.render(Context({}))
-        self.assertIn(self.LIST_GROUP_ITEM_START, rendered)
-        self.assertIn(self.LIST_GROUP_ITEM_END, rendered)
+        self.assertInHTML(self.LIST_GROUP_ITEM_START + self.LIST_GROUP_ITEM_END, rendered)
 
     def test_list_group_item_link_is_rendered(self):
         rendered = self.TEMPLATE_LINK.render(Context({'sample_link': self.SAMPLE_LINK, 'sample_label': self.SAMPLE_LABEL}))
         self.assertInHTML(self.LIST_GROUP_ITEM_LINK_START + self.SAMPLE_LABEL + self.LIST_GROUP_ITEM_LINK_END, rendered)
+
+    def test_list_group_item_link_without_destination_raises_exception(self):
+        with self.assertRaises(TemplateSyntaxError):
+            self.TEMPLATE_LINK.render(Context({}))
 
 
 class PanelTagsTest(SimpleTestCase):
@@ -169,7 +195,7 @@ class PanelTagsTest(SimpleTestCase):
 
     def test_panel_is_rendered(self):
         rendered = self.TEMPLATE_SIMPLE.render(Context({}))
-        self.assertIn(
+        self.assertInHTML(
             self.PANEL_START
             + self.PANEL_HEADING_START + self.PANEL_HEADING_END
             + self.PANEL_BODY_START + self.PANEL_BODY_END
