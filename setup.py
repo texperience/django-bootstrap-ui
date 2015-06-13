@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-bootstrap-ui',
-    version='0.1.0a5',
+    version='0.1.0b1',
     packages=find_packages(exclude=['tests', 'docs']),
     include_package_data=True,
     license='ISC License (ISCL)',
@@ -25,7 +25,7 @@ setup(
         'dominate>=2.1,<2.2',
     ],
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Framework :: Django :: 1.7',

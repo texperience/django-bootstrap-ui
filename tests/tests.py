@@ -86,6 +86,80 @@ class BootstrapTagsTest(SimpleTestCase):
         self.assertInHTML(self.HTMLTAG_START + self.HTMLTAG_END, rendered)
 
 
+class GridTagsTest(SimpleTestCase):
+    SAMPLE_CONTENT = 'Lorem ipsum'
+    SAMPLE_COLUMN_WIDTH = '7'
+
+    CONTAINER_START = mark_safe('<div class="container">')
+    CONTAINER_END = mark_safe('</div>')
+
+    CONTAINER_FLUID_START = mark_safe('<div class="container-fluid">')
+    CONTAINER_FLUID_END = mark_safe('</div>')
+
+    ROW_START = mark_safe('<div class="row">')
+    ROW_END = mark_safe('</div>')
+
+    COLUMN_START = mark_safe('<div class="col-xs-12">')
+    COLUMN_END = mark_safe('</div>')
+
+    COLUMN_CUSTOM_WIDTH_START = mark_safe(
+        '<div class="'
+        + 'col-xs-' + SAMPLE_COLUMN_WIDTH
+        + ' col-sm-' + SAMPLE_COLUMN_WIDTH
+        + ' col-md-' + SAMPLE_COLUMN_WIDTH
+        + ' col-lg-' + SAMPLE_COLUMN_WIDTH
+        + '">'
+    )
+    COLUMN_CUSTOM_WIDTH_END = mark_safe('</div>')
+
+    TEMPLATE_SIMPLE = Template(
+        '{% load bootstrap_ui_tags %}'
+        '{% container %}'
+        '{% row %}'
+        '{% column %}'
+        '{{ content }}'
+        '{% endcolumn %}'
+        '{% endrow %}'
+        '{% endcontainer %}'
+        '{% container type=type %}'
+        '{% endcontainer %}'
+    )
+
+    TEMPLATE_CUSTOM_COLUMN = Template(
+        '{% load bootstrap_ui_tags %}'
+        '{% column xs=xs sm=sm md=md lg=lg %}'
+        '{% endcolumn %}'
+    )
+
+    def setUp(self):
+        pass
+
+    def test_container_with_row_column_and_content_is_rendered(self):
+        rendered = self.TEMPLATE_SIMPLE.render(Context({'content': self.SAMPLE_CONTENT, 'type': 'fluid'}))
+        self.assertInHTML(
+            self.CONTAINER_START + self.ROW_START + self.COLUMN_START + self.SAMPLE_CONTENT + self.COLUMN_END
+            + self.ROW_END + self.CONTAINER_END,
+            rendered
+        )
+
+    def test_container_fluid_is_rendered(self):
+        rendered = self.TEMPLATE_SIMPLE.render(Context({'type': 'fluid'}))
+        self.assertInHTML(self.CONTAINER_FLUID_START + self.CONTAINER_FLUID_END, rendered)
+
+    def test_container_invalid_type_raises_exception(self):
+        with self.assertRaises(TemplateSyntaxError):
+            self.TEMPLATE_SIMPLE.render(Context({'type': 'foo'}))
+
+    def test_column_custom_grid_is_rendered(self):
+        rendered = self.TEMPLATE_CUSTOM_COLUMN.render(Context({
+            'xs': self.SAMPLE_COLUMN_WIDTH,
+            'sm': self.SAMPLE_COLUMN_WIDTH,
+            'md': self.SAMPLE_COLUMN_WIDTH,
+            'lg': self.SAMPLE_COLUMN_WIDTH
+        }))
+        self.assertInHTML(self.COLUMN_CUSTOM_WIDTH_START + self.COLUMN_CUSTOM_WIDTH_END, rendered)
+
+
 class ListGroupTagsTest(SimpleTestCase):
     SAMPLE_LINK = 'http://example.org'
     SAMPLE_LABEL = 'Linklabel'
@@ -135,7 +209,9 @@ class ListGroupTagsTest(SimpleTestCase):
         self.assertInHTML(self.LIST_GROUP_ITEM_START + self.LIST_GROUP_ITEM_END, rendered)
 
     def test_list_group_item_link_is_rendered(self):
-        rendered = self.TEMPLATE_LINK.render(Context({'sample_link': self.SAMPLE_LINK, 'sample_label': self.SAMPLE_LABEL}))
+        rendered = self.TEMPLATE_LINK.render(
+            Context({'sample_link': self.SAMPLE_LINK, 'sample_label': self.SAMPLE_LABEL})
+        )
         self.assertInHTML(self.LIST_GROUP_ITEM_LINK_START + self.SAMPLE_LABEL + self.LIST_GROUP_ITEM_LINK_END, rendered)
 
     def test_list_group_item_link_without_destination_raises_exception(self):

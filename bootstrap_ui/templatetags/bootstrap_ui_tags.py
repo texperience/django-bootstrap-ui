@@ -1,4 +1,4 @@
-from django.template import Library, TemplateSyntaxError
+from django.template import Library, Node, TemplateSyntaxError
 from django.utils.safestring import mark_safe
 from dominate import tags
 from tag_parser import template_tag
@@ -80,6 +80,71 @@ class BootstrapNode(HtmlTagNode):
     ]
     default_css_classes = ['bs']
     default_tag = 'div'
+
+
+@template_tag(register, 'column')
+class ColumnNode(BootstrapNode):
+    """Renders a column"""
+    # Overwrite BaseNode attributes
+    allowed_kwargs = ('xs', 'sm', 'md', 'lg')
+    end_tag_name = 'endcolumn'
+
+    # Overwrite HtmlTagNode attributes
+    default_css_classes = ['col-xs-12']
+    default_tag = 'div'
+
+    def render_tag(self, context, *tag_args, **tag_kwargs):
+        htmltag = super(BootstrapNode, self).render_tag(context, safe=False, *tag_args, **tag_kwargs)
+        scope = context.render_context[self]
+
+        # Apply column grid classes
+        apply_grid_classes = list(set(scope) & set(self.allowed_kwargs))
+
+        if apply_grid_classes:
+            htmltag.set_attribute(
+                'class',
+                ' '.join('col-' + grid_class + '-' + scope[grid_class] for grid_class in apply_grid_classes)
+            )
+
+        return mark_safe(htmltag.render())
+
+
+@template_tag(register, 'row')
+class RowNode(BootstrapNode):
+    """Renders a row"""
+    # Overwrite BaseNode attributes
+    allowed_kwargs = ()
+    end_tag_name = 'endrow'
+
+    # Overwrite HtmlTagNode attributes
+    default_css_classes = ['row']
+    default_tag = 'div'
+
+
+@template_tag(register, 'container')
+class ContainerNode(BootstrapNode):
+    """Renders a container"""
+    # Overwrite BaseNode attributes
+    allowed_kwargs = ('type',)
+    end_tag_name = 'endcontainer'
+
+    # Overwrite HtmlTagNode attributes
+    default_css_classes = ['container']
+    default_tag = 'div'
+
+    def render_tag(self, context, *tag_args, **tag_kwargs):
+        htmltag = super(ContainerNode, self).render_tag(context, safe=False, *tag_args, **tag_kwargs)
+        scope = context.render_context[self]
+
+        if 'type' in scope:
+            if scope['type'] != 'fluid':
+                raise TemplateSyntaxError(
+                    '%r tag only allows %r for %r' % (self.tag_name, 'fluid', 'type')
+                )
+
+            htmltag.set_attribute('class', 'container-fluid')
+
+        return mark_safe(htmltag.render())
 
 
 @template_tag(register, 'listgroup')

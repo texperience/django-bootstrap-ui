@@ -1,6 +1,92 @@
 Available bootstrap components
 ==============================
 
+Grid system
+-----------
+
+See http://getbootstrap.com/css/#grid.
+
+Container
+*********
+
+Use the ``container`` tag to house a fixed-width bootstrap grid system::
+
+    {% container %}
+        ...
+    {% endcontainer %}
+
+This renders the following html code::
+
+    <div class="container">
+        ...
+    </div>
+
+Provide ``type="fluid"`` as parameter for a full-width container housing your grid::
+
+    {% container type="fluid" %}
+        ...
+    {% endcontainer %}
+
+This renders the following html code::
+
+    <div class="container-fluid">
+        ...
+    </div>
+
+Row
+***
+
+Use ``row`` to create horizontal groups of columns within containers::
+
+    {% row %}
+        ...
+    {% endrow %}
+
+This renders the following html code::
+
+    <div class="row">
+        ...
+    </div>
+
+Remember that according to the bootstrap rules only columns may be immediate children of rows.
+
+Column
+******
+
+Basic example
++++++++++++++
+
+Place ``column`` within rows to span a certain width of your row::
+
+    {% column %}
+        Lorem ipsum. Your content goes here!
+    {% endcolumn %}
+
+This renders the following html code::
+
+    <div class="col-xs-12">
+        Lorem ipsum. Your content goes here!
+    </div>
+
+As bootstrap is a mobile first framework grid classes are applied to devices with screen widths greater than or equal to the breakpoint sizes. Therefore ``column`` used without parameters applies a ``col-xs-12`` css class.
+
+Custom column width and larger devices
+++++++++++++++++++++++++++++++++++++++
+
+Provide ``xs``, ``sm``, ``md`` and/or ``lg`` parameters to change the column span and address larger viewports::
+
+    {% column xs="8" sm="6" md="4" lg="3" %}
+        Lorem ipsum. Your content goes here!
+    {% endcolumn %}
+
+This renders the following html code::
+
+    <div class="col-xs-8 col-sm-6 col-md-4 col-lg-3">
+        Lorem ipsum. Your content goes here!
+    </div>
+
+Every individual parameter may be omitted, you can use any combination of them.
+
 List group
 ----------
 
