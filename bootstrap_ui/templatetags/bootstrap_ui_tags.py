@@ -16,7 +16,7 @@ class HtmlTagNode(BaseNode):
     min_args = None
 
     # Additional constants, overwrite these when inheriting for customisation
-    allowed_tags = []
+    allowed_tags = [tag.__name__ for tag in tags.html_tag.__subclasses__()]
     default_css_classes = []
     default_tag = 'div'
 
@@ -25,31 +25,40 @@ class HtmlTagNode(BaseNode):
         if self not in context.render_context:
             scope = {'nodelist': self.nodelist}
 
+            # Preserve all kwargs
             for keyword in tag_kwargs:
                 scope[keyword] = tag_kwargs[keyword]
 
+            # Decide to use either given tag or default
             if 'use_tag' not in scope:
                 scope['use_tag'] = self.default_tag
-            elif scope['use_tag'] not in self.allowed_tags and self.allowed_tags:
+
+            # Check if given tag is allowed
+            if scope['use_tag'] not in self.allowed_tags and self.allowed_tags:
                 raise TemplateSyntaxError(
                     '%r tag only allows %r for %r' % (self.tag_name, ', '.join(self.allowed_tags), 'use_tag')
                 )
 
+            # Collect css classes to apply
             scope['use_css_classes'] = self.default_css_classes[:]
 
             if 'add_css_classes' in scope:
                 scope['use_css_classes'] += scope['add_css_classes'].split()
 
+            # Add scope to context identified by self
             context.render_context[self] = scope
 
+        # Retrieve scope from context as shortcut
         scope = context.render_context[self]
 
-        # Instantiate a html tag from the given scope
+        # Instantiate a html tag from the given tag
         htmltag = getattr(tags, scope['use_tag'])()
 
+        # Apply css classes
         if scope['use_css_classes']:
             htmltag.set_attribute('class', ' '.join(scope['use_css_classes']))
 
+        # Render inner html content
         htmltag.add_raw_string(scope['nodelist'].render(context))
 
         return mark_safe(htmltag.render()) if safe else htmltag
@@ -63,7 +72,12 @@ class BootstrapNode(HtmlTagNode):
     end_tag_name = 'endbootstraptag'
 
     # Overwrite HtmlTagNode attributes
-    allowed_tags = []
+    allowed_tags = [
+        'a',
+        'div',
+        'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+        'ul', 'li',
+    ]
     default_css_classes = ['bs']
     default_tag = 'div'
 
