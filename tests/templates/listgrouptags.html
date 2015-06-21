@@ -1,0 +1,13 @@
+{% load bootstrap_ui_tags %}
+
+{% listgroup %}
+    {% listgroupitem %}
+        {{ content }}
+    {% endlistgroupitem %}
+{% endlistgroup %}
+
+{% if use_tag == 'a' %}
+    {% listgroupitem use_tag=use_tag link=link %}
+        {{ label }}
+    {% endlistgroupitem %}
+{% endif %}

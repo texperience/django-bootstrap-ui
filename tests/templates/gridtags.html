@@ -1,0 +1,20 @@
+{% load bootstrap_ui_tags %}
+
+{% container %}
+    {% row %}
+        {% column %}
+            {{ content }}
+        {% endcolumn %}
+    {% endrow %}
+{% endcontainer %}
+
+{% if type %}
+    {% container type=type %}
+    {% endcontainer %}
+{% endif %}
+
+{% column xs=xs sm=sm md=md lg=lg %}
+{% endcolumn %}
+
+{% column lg=lg %}
+{% endcolumn %}
