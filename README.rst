@@ -18,11 +18,13 @@ Welcome to django-bootstrap-ui
 
 django-bootstrap-ui aims to be a powerful Django app to ease the integration of the popular `Bootstrap UI framework`_. It is written in `Python`_ and built on the `Django web framework <https://www.djangoproject.com/>`_.
 
-The code is open source, and available on `GitHub`_.
+The code is open source and released under the `ISC License (ISCL)`_. It is available on `GitHub`_ and follows the guidelines about `Semantic Versioning`_ for transparency within the release cycle and backward compatibility whenever possible.
 
 .. _Bootstrap UI framework: http://getbootstrap.com/
 .. _Python: https://www.python.org/
 .. _Django web framework: https://www.djangoproject.com/
+.. _ISC License (ISCL): http://en.wikipedia.org/wiki/ISC_license
+.. _Semantic Versioning: http://semver.org/
 .. _GitHub: https://github.com/timorieber/django-bootstrap-ui
 
 Getting started
@@ -66,5 +68,6 @@ Getting started
 Available bootstrap components
 ------------------------------
 
+* Grid system (http://getbootstrap.com/css/#grid)
 * List group (http://getbootstrap.com/components/#list-group)
 * Panels (http://getbootstrap.com/components/#panels)
