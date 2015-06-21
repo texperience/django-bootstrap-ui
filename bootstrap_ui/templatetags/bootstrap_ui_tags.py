@@ -103,7 +103,7 @@ class ColumnNode(BootstrapNode):
         if apply_grid_classes:
             htmltag.set_attribute(
                 'class',
-                ' '.join('col-' + grid_class + '-' + scope[grid_class] for grid_class in apply_grid_classes)
+                ' '.join('col-' + grid_class + '-' + (scope[grid_class] or '12') for grid_class in apply_grid_classes)
             )
 
         return mark_safe(htmltag.render())

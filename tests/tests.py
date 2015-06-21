@@ -112,6 +112,8 @@ class GridTagsTest(SimpleTestCase):
     )
     COLUMN_CUSTOM_WIDTH_END = mark_safe('</div>')
 
+    COLUMN_CUSTOM_WIDTH_DEFAULT = '<div class="col-lg-12" />'
+
     TEMPLATE_SIMPLE = Template(
         '{% load bootstrap_ui_tags %}'
         '{% container %}'
@@ -128,6 +130,12 @@ class GridTagsTest(SimpleTestCase):
     TEMPLATE_CUSTOM_COLUMN = Template(
         '{% load bootstrap_ui_tags %}'
         '{% column xs=xs sm=sm md=md lg=lg %}'
+        '{% endcolumn %}'
+    )
+
+    TEMPLATE_CUSTOM_COLUMN_DEFAULT = Template(
+        '{% load bootstrap_ui_tags %}'
+        '{% column lg=lg %}'
         '{% endcolumn %}'
     )
 
@@ -158,6 +166,10 @@ class GridTagsTest(SimpleTestCase):
             'lg': self.SAMPLE_COLUMN_WIDTH
         }))
         self.assertInHTML(self.COLUMN_CUSTOM_WIDTH_START + self.COLUMN_CUSTOM_WIDTH_END, rendered)
+
+    def test_column_custom_grid_with_defaults_is_rendered(self):
+        rendered = self.TEMPLATE_CUSTOM_COLUMN_DEFAULT.render(Context({'lg': ''}))
+        self.assertInHTML(self.COLUMN_CUSTOM_WIDTH_DEFAULT, rendered)
 
 
 class ListGroupTagsTest(SimpleTestCase):
