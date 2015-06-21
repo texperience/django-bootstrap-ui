@@ -216,3 +216,22 @@ class PanelTagsTest(SimpleTestCase):
     def test_panel_footer_content_is_rendered(self):
         rendered = self.template.render(Context({'footer': self.SAMPLE_FOOTER}))
         self.assertInHTML(self.PANEL_FOOTER_START + self.SAMPLE_FOOTER + self.PANEL_FOOTER_END, rendered)
+
+
+class TemplatesTest(SimpleTestCase):
+    def setUp(self):
+        self.template_html5_skeleton = get_template('bootstrap_ui/html5-skeleton.html')
+        self.template_bootstrap_skeleton = get_template('bootstrap_ui/bootstrap-skeleton.html')
+
+    def test_html5_skeleton_is_rendered(self):
+        rendered = self.template_html5_skeleton.render(Context({}))
+        self.assertInHTML(
+            '<html lang="en"><head><meta charset="utf-8"><title>django-bootstrap-ui template</title></head>'
+            '<body><h1>Hello, django-bootstrap-ui!</h1></body></html>', rendered)
+
+    def test_bootstrap_skeleton_is_rendered(self):
+        rendered = self.template_bootstrap_skeleton.render(Context({}))
+        self.assertInHTML('<meta http-equiv="X-UA-Compatible" content="IE=edge">', rendered)
+        self.assertInHTML('<meta name="viewport" content="width=device-width, initial-scale=1">', rendered)
+        self.assertInHTML('<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">', rendered)
+        self.assertInHTML('<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>', rendered)

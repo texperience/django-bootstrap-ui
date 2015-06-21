@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{% if request.LANGUAGE_CODE %}{{ request.LANGUAGE_CODE }}{% else %}en{% endif %}">
+    <head>
+        <!-- This meta tag *must* come first in the head; any other head content must come *after* these tag -->
+        <meta charset="utf-8">
+
+        <!-- Block head meta -->
+        {% block head-meta %}{% endblock %}
+
+        <!-- Page title -->
+        <title>{% block head-title %}django-bootstrap-ui template{% endblock %}</title>
+
+        <!-- Block head css -->
+        {% block head-css %}{% endblock %}
+
+        <!-- Block head javascript -->
+        {% block head-javascript %}{% endblock %}
+
+        <!-- Block head extension -->
+        {% block head-extension %}{% endblock %}
+    </head>
+    <body>
+        <!-- Block body content -->
+        {% block body-content %}<h1>Hello, django-bootstrap-ui!</h1>{% endblock %}
+
+        <!-- Block body javascript -->
+        {% block body-javascript %}{% endblock %}
+    </body>
+</html>
