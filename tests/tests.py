@@ -233,5 +233,6 @@ class TemplatesTest(SimpleTestCase):
         rendered = self.template_bootstrap_skeleton.render(Context({}))
         self.assertInHTML('<meta http-equiv="X-UA-Compatible" content="IE=edge">', rendered)
         self.assertInHTML('<meta name="viewport" content="width=device-width, initial-scale=1">', rendered)
-        self.assertInHTML('<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">', rendered)
-        self.assertInHTML('<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>', rendered)
+        self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">', rendered)
+        self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">', rendered)
+        self.assertInHTML('<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>', rendered)
