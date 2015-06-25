@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-bootstrap-ui',
-    version='0.1.0b1',
+    version='0.1.0b2',
     packages=find_packages(exclude=['tests', 'docs']),
     include_package_data=True,
     license='ISC License (ISCL)',

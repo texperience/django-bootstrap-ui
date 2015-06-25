@@ -27,6 +27,17 @@ The code is open source and released under the `ISC License (ISCL)`_. It is avai
 .. _Semantic Versioning: http://semver.org/
 .. _GitHub: https://github.com/timorieber/django-bootstrap-ui
 
+Features
+--------
+
+* Full-featured Bootstrap 3 template (3.3.5)
+* Latest Font Awesome integration (4.3.0)
+* Intuitive template tag API for generating valid Bootstrap markup
+* Extensive and up-to-date documentation
+* Mainstream Python (2.7, 3.3, 3.4) and Django (1.7, 1.8) support
+* Outstanding `test coverage <https://coveralls.io/r/timorieber/django-bootstrap-ui?branch=master>`_
+* Continuously integrated codebase
+
 Index
 -----
 
@@ -34,4 +45,5 @@ Index
    :maxdepth: 2
 
    getting_started/index
+   templates/index
    components/index

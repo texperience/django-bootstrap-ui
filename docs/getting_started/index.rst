@@ -4,40 +4,70 @@ Getting started
 Installation
 ------------
 
-#. First install the package using ``pip`` with the ``--pre`` option as long as this is a pre-release::
+#. First install the package using ``pip`` with the ``--pre`` option as long as this is a pre-release:
 
-    pip install --pre django-bootstrap-ui
+    .. code:: bash
 
-#. Add ``bootstrap_ui`` to your ``INSTALLED_APPS`` setting::
+        pip install --pre django-bootstrap-ui
 
-    INSTALLED_APPS = (
-        ...
-        'bootstrap_ui',
-        ...
-    )
+#. Add ``bootstrap_ui`` to your ``INSTALLED_APPS`` setting:
+
+    .. code:: python
+
+        INSTALLED_APPS = (
+            ...
+            'bootstrap_ui',
+            ...
+        )
 
 Usage
 -----
 
-#. Load ``bootstrap_ui_tags`` in your template::
+Bootstrap template
+******************
 
-    {% load bootstrap_ui_tags %}
+#. Extend ``bootstrap-skeleton.html`` in your base template:
 
-#. Use bootstrap components through intuitive template tags::
+    .. code:: Django
 
-    {% listgroup %}
-        {% listgroupitem %}
-            Your raw text.
-        {% endlistgroupitem %}
-        {% listgroupitem %}
-            You may also use a {{ context_variable }}.
-        {% endlistgroupitem %}
-    {% endlistgroup %}
+        {% extends "bootstrap_ui/bootstrap-skeleton.html" %}
 
-#. Some bootstrap components support different html tags, to change the default add a parameter::
+#. Fill predefined blocks with your content:
 
-    {% listgroup use_tag="div" %}
-        ...
-        Your list group content goes here.
-        ...
-    {% endlistgroup %}
+    .. code:: Django
+
+        {% block body-content %}
+            <h1>Hello, I'm using django-bootstrap-ui!</h1>
+        {% endblock %}
+
+Template tag API
+****************
+
+#. Load ``bootstrap_ui_tags`` in your template:
+
+    .. code:: Django
+
+        {% load bootstrap_ui_tags %}
+
+#. Use bootstrap components through intuitive template tags:
+
+    .. code:: Django
+
+        {% listgroup %}
+            {% listgroupitem %}
+                Your raw text.
+            {% endlistgroupitem %}
+            {% listgroupitem %}
+                You may also use a {{ context_variable }}.
+            {% endlistgroupitem %}
+        {% endlistgroup %}
+
+#. Some bootstrap components support different html tags, to change the default add a parameter:
+
+    .. code:: Django
+
+        {% listgroup use_tag="div" %}
+            ...
+            Your list group content goes here.
+            ...
+        {% endlistgroup %}

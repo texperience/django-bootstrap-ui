@@ -1,5 +1,5 @@
-Available bootstrap components
-==============================
+Components
+==========
 
 Grid system
 -----------
@@ -9,25 +9,33 @@ See http://getbootstrap.com/css/#grid.
 Container
 *********
 
-Use the ``container`` tag to house a fixed-width bootstrap grid system::
+Use the ``container`` tag to house a fixed-width bootstrap grid system:
+
+.. code:: Django
 
     {% container %}
         ...
     {% endcontainer %}
 
-This renders the following html code::
+This renders the following html code:
+
+.. code:: HTML
 
     <div class="container">
         ...
     </div>
 
-Provide ``type="fluid"`` as parameter for a full-width container housing your grid::
+Provide ``type="fluid"`` as parameter for a full-width container housing your grid:
+
+.. code:: Django
 
     {% container type="fluid" %}
         ...
     {% endcontainer %}
 
-This renders the following html code::
+This renders the following html code:
+
+.. code:: HTML
 
     <div class="container-fluid">
         ...
@@ -36,13 +44,17 @@ This renders the following html code::
 Row
 ***
 
-Use ``row`` to create horizontal groups of columns within containers::
+Use ``row`` to create horizontal groups of columns within containers:
+
+.. code:: Django
 
     {% row %}
         ...
     {% endrow %}
 
-This renders the following html code::
+This renders the following html code:
+
+.. code:: HTML
 
     <div class="row">
         ...
@@ -56,13 +68,17 @@ Column
 Basic example
 +++++++++++++
 
-Place ``column`` within rows to span a certain width of your row::
+Place ``column`` within rows to span a certain width of your row:
+
+.. code:: Django
 
     {% column %}
         Lorem ipsum. Your content goes here!
     {% endcolumn %}
 
-This renders the following html code::
+This renders the following html code:
+
+.. code:: HTML
 
     <div class="col-xs-12">
         Lorem ipsum. Your content goes here!
@@ -73,13 +89,17 @@ As bootstrap is a mobile first framework grid classes are applied to devices wit
 Custom column width and larger devices
 ++++++++++++++++++++++++++++++++++++++
 
-Provide ``xs``, ``sm``, ``md`` and/or ``lg`` parameters to change the column span and address larger viewports::
+Provide ``xs``, ``sm``, ``md`` and/or ``lg`` parameters to change the column span and address larger viewports:
+
+.. code:: Django
 
     {% column xs="8" sm="6" md="4" lg="3" %}
         Lorem ipsum. Your content goes here!
     {% endcolumn %}
 
-This renders the following html code::
+This renders the following html code:
+
+.. code:: HTML
 
     <div class="col-xs-8 col-sm-6 col-md-4 col-lg-3">
         Lorem ipsum. Your content goes here!
@@ -95,7 +115,9 @@ See http://getbootstrap.com/components/#list-group.
 Basic example
 *************
 
-Use the ``listgroup`` tag with nested ``listgroupitem`` tags::
+Use the ``listgroup`` tag with nested ``listgroupitem`` tags:
+
+.. code:: Django
 
     {% listgroup %}
         {% listgroupitem %}
@@ -106,7 +128,9 @@ Use the ``listgroup`` tag with nested ``listgroupitem`` tags::
         {% endlistgroupitem %}
     {% endlistgroup %}
 
-This renders the following html code::
+This renders the following html code:
+
+.. code:: HTML
 
     <ul class="list-group">
         <li class="list-group-item">
@@ -120,7 +144,9 @@ This renders the following html code::
 Linked items
 ************
 
-Provide ``use_tag`` and ``link`` parameters to get linked items::
+Provide ``use_tag`` and ``link`` parameters to get linked items:
+
+.. code:: Django
 
     {% listgroup use_tag="div" %}
         {% listgroupitem use_tag="a" link="http://example.org" %}
@@ -131,7 +157,9 @@ Provide ``use_tag`` and ``link`` parameters to get linked items::
         {% endlistgroupitem %}
     {% endlistgroup %}
 
-This renders the following html code::
+This renders the following html code:
+
+.. code:: HTML
 
     <div class="list-group">
         <a class="list-group-item" href="http://example.org">
@@ -145,7 +173,9 @@ This renders the following html code::
 Custom content
 **************
 
-You may also render custom html content within your ``list-group-item``::
+You may also render custom html content within your ``list-group-item``:
+
+.. code:: Django
 
     {% listgroup use_tag="div" %}
         {% listgroupitem use_tag="div" %}
@@ -154,7 +184,9 @@ You may also render custom html content within your ``list-group-item``::
         {% endlistgroupitem %}
     {% endlistgroup %}
 
-This renders the following html code::
+This renders the following html code:
+
+.. code:: HTML
 
     <div class="list-group">
         <div class="list-group-item">
@@ -171,7 +203,9 @@ See http://getbootstrap.com/components/#panels.
 Basic example
 *************
 
-Use the ``panel`` in a simple way::
+Use the ``panel`` in a simple way:
+
+.. code:: Django
 
     {% panel %}
         {% panelbody %}
@@ -179,7 +213,9 @@ Use the ``panel`` in a simple way::
         {% endpanelbody %}
     {% endpanel %}
 
-This renders the following html code::
+This renders the following html code:
+
+.. code:: HTML
 
     <div class="panel panel-default">
         <div class="panel-body">
@@ -190,7 +226,9 @@ This renders the following html code::
 Panel with heading
 ******************
 
-Add a nested ``panel-heading``::
+Add a nested ``panel-heading``:
+
+.. code:: Django
 
     {% panel %}
         {% panelheading %}
@@ -201,7 +239,9 @@ Add a nested ``panel-heading``::
         {% endpanelbody %}
     {% endpanel %}
 
-This renders the following html code::
+This renders the following html code:
+
+.. code:: HTML
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -212,7 +252,9 @@ This renders the following html code::
         </div>
     </div>
 
-In addition you may specify a ``panel-title`` within ``panel-heading`` using ``h1`` to ``h6``::
+In addition you may specify a ``panel-title`` within ``panel-heading`` using ``h1`` to ``h6``:
+
+.. code:: Django
 
     {% panel %}
         {% panelheading %}
@@ -225,7 +267,9 @@ In addition you may specify a ``panel-title`` within ``panel-heading`` using ``h
         {% endpanelbody %}
     {% endpanel %}
 
-This renders the following html code::
+This renders the following html code:
+
+.. code:: HTML
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -239,7 +283,9 @@ This renders the following html code::
 Panel with footer
 *****************
 
-Add a nested ``panel-footer``::
+Add a nested ``panel-footer``:
+
+.. code:: Django
 
     {% panel %}
         {% panelbody %}
@@ -250,7 +296,9 @@ Add a nested ``panel-footer``::
         {% endpanelfooter %}
     {% endpanel %}
 
-This renders the following html code::
+This renders the following html code:
+
+.. code:: HTML
 
     <div class="panel panel-default">
         <div class="panel-body">
@@ -264,7 +312,9 @@ This renders the following html code::
 With list groups
 ****************
 
-As mentioned in the bootstrap docs you may use a list group inside your panel, even in addition to default panel contents::
+As mentioned in the bootstrap docs you may use a list group inside your panel, even in addition to default panel contents:
+
+.. code:: Django
 
     {% panel %}
         {% panelheading %}
@@ -293,7 +343,9 @@ As mentioned in the bootstrap docs you may use a list group inside your panel, e
         {% endlistgroup %}
     {% endpanel %}
 
-This renders the following html code::
+This renders the following html code:
+
+.. code:: HTML
 
     <div class="panel panel-default">
         <div class="panel-heading">

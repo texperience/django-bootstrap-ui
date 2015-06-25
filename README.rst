@@ -27,47 +27,86 @@ The code is open source and released under the `ISC License (ISCL)`_. It is avai
 .. _Semantic Versioning: http://semver.org/
 .. _GitHub: https://github.com/timorieber/django-bootstrap-ui
 
-Getting started
----------------
+Features
+--------
 
-#. First install the package using ``pip`` with the ``--pre`` option as long as this is a pre-release::
+* Full-featured Bootstrap 3 template (3.3.5)
+* Latest Font Awesome integration (4.3.0)
+* Intuitive template tag API for generating valid Bootstrap markup
+* Extensive and up-to-date documentation
+* Mainstream Python (2.7, 3.3, 3.4) and Django (1.7, 1.8) support
+* Outstanding `test coverage <https://coveralls.io/r/timorieber/django-bootstrap-ui?branch=master>`_
+* Continuously integrated codebase
 
-    pip install --pre django-bootstrap-ui
+Installation
+------------
 
-#. Add ``bootstrap_ui`` to your ``INSTALLED_APPS`` setting::
+#. First install the package using ``pip`` with the ``--pre`` option as long as this is a pre-release:
 
-    INSTALLED_APPS = (
-        ...
-        'bootstrap_ui',
-        ...
-    )
+    .. code:: bash
 
-#. Load ``bootstrap_ui_tags`` in your template::
+        pip install --pre django-bootstrap-ui
 
-    {% load bootstrap_ui_tags %}
+#. Add ``bootstrap_ui`` to your ``INSTALLED_APPS`` setting:
 
-#. Use bootstrap components through intuitive template tags::
+    .. code:: python
 
-    {% listgroup %}
-        {% listgroupitem %}
-            Your raw text.
-        {% endlistgroupitem %}
-        {% listgroupitem %}
-            You may also use a {{ context_variable }}.
-        {% endlistgroupitem %}
-    {% endlistgroup %}
+        INSTALLED_APPS = (
+            ...
+            'bootstrap_ui',
+            ...
+        )
 
-#. Some bootstrap components support different html tags, to change the default add a parameter::
+Usage
+-----
 
-    {% listgroup use_tag="div" %}
-        ...
-        Your list group content goes here.
-        ...
-    {% endlistgroup %}
+Bootstrap template
+******************
 
-Available bootstrap components
-------------------------------
+#. Extend ``bootstrap-skeleton.html`` in your base template:
 
-* Grid system (http://getbootstrap.com/css/#grid)
-* List group (http://getbootstrap.com/components/#list-group)
-* Panels (http://getbootstrap.com/components/#panels)
+    .. code:: Django
+
+        {% extends "bootstrap_ui/bootstrap-skeleton.html" %}
+
+#. Fill predefined blocks with your content:
+
+    .. code:: Django
+
+        {% block body-content %}
+            <h1>Hello, I'm using django-bootstrap-ui!</h1>
+        {% endblock %}
+
+Template tag API
+****************
+
+#. Load ``bootstrap_ui_tags`` in your template:
+
+    .. code:: Django
+
+        {% load bootstrap_ui_tags %}
+
+#. Use bootstrap components through intuitive template tags:
+
+    .. code:: Django
+
+        {% listgroup %}
+            {% listgroupitem %}
+                Your raw text.
+            {% endlistgroupitem %}
+            {% listgroupitem %}
+                You may also use a {{ context_variable }}.
+            {% endlistgroupitem %}
+        {% endlistgroup %}
+
+#. Some bootstrap components support different html tags, to change the default add a parameter:
+
+    .. code:: Django
+
+        {% listgroup use_tag="div" %}
+            ...
+            Your list group content goes here.
+            ...
+        {% endlistgroup %}
+
+Continue reading in our `detailed documentation <https://django-bootstrap-ui.readthedocs.org>`_ at readthedocs.org.
