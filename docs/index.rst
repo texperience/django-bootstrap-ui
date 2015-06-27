@@ -47,3 +47,4 @@ Index
    getting_started/index
    templates/index
    components/index
+   reference/index
