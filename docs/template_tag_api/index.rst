@@ -1,5 +1,7 @@
-Components
-==========
+Template tag API
+================
+
+Generate your own, customized Bootstrap elements using our template tags.
 
 Grid system
 -----------

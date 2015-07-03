@@ -63,6 +63,8 @@ Usage
 Bootstrap template
 ******************
 
+Prepare your page for Bootstrap and provide your content:
+
 #. Extend ``bootstrap-skeleton.html`` in your base template:
 
     .. code:: Django
@@ -80,13 +82,15 @@ Bootstrap template
 Template tag API
 ****************
 
+Generate your own, customized Bootstrap elements using our template tags. Example:
+
 #. Load ``bootstrap_ui_tags`` in your template:
 
     .. code:: Django
 
         {% load bootstrap_ui_tags %}
 
-#. Use bootstrap components through intuitive template tags:
+#. Use Bootstrap components through intuitive template tags:
 
     .. code:: Django
 
@@ -99,7 +103,7 @@ Template tag API
             {% endlistgroupitem %}
         {% endlistgroup %}
 
-#. Some bootstrap components support different html tags, to change the default add a parameter:
+#. Some Bootstrap components support different html tags, to change the default add a parameter:
 
     .. code:: Django
 

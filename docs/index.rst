@@ -46,5 +46,5 @@ Index
 
    getting_started/index
    templates/index
-   components/index
+   template_tag_api/index
    reference/index
