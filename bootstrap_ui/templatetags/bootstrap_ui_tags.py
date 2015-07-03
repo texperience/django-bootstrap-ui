@@ -22,34 +22,30 @@ class HtmlTagNode(BaseNode):
 
     def render_tag(self, context, safe=True, *tag_args, **tag_kwargs):
         # For thread-safety add all node specific information to a self-scoping dictionary
-        if self not in context.render_context:
-            scope = {'nodelist': self.nodelist}
+        scope = {'nodelist': self.nodelist}
 
-            # Preserve all kwargs
-            for keyword in tag_kwargs:
-                scope[keyword] = tag_kwargs[keyword]
+        # Preserve all kwargs
+        for keyword in tag_kwargs:
+            scope[keyword] = tag_kwargs[keyword]
 
-            # Decide to use either given tag or default
-            if 'use_tag' not in scope:
-                scope['use_tag'] = self.default_tag
+        # Decide to use either given tag or default
+        if 'use_tag' not in scope:
+            scope['use_tag'] = self.default_tag
 
-            # Check if given tag is allowed
-            if scope['use_tag'] not in self.allowed_tags and self.allowed_tags:
-                raise TemplateSyntaxError(
-                    '%r tag only allows %r for %r' % (self.tag_name, ', '.join(self.allowed_tags), 'use_tag')
-                )
+        # Check if given tag is allowed
+        if scope['use_tag'] not in self.allowed_tags and self.allowed_tags:
+            raise TemplateSyntaxError(
+                '%r tag only allows %r for %r' % (self.tag_name, ', '.join(self.allowed_tags), 'use_tag')
+            )
 
-            # Collect css classes to apply
-            scope['use_css_classes'] = self.default_css_classes[:]
+        # Collect css classes to apply
+        scope['use_css_classes'] = self.default_css_classes[:]
 
-            if 'add_css_classes' in scope:
-                scope['use_css_classes'] += scope['add_css_classes'].split()
+        if 'add_css_classes' in scope:
+            scope['use_css_classes'] += scope['add_css_classes'].split()
 
-            # Add scope to context identified by self
-            context.render_context[self] = scope
-
-        # Retrieve scope from context as shortcut
-        scope = context.render_context[self]
+        # Add scope to context identified by self
+        context.render_context[self] = scope
 
         # Instantiate a html tag from the given tag
         htmltag = getattr(tags, scope['use_tag'])()
