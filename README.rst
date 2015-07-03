@@ -32,6 +32,7 @@ Features
 
 * Full-featured Bootstrap 3 template (3.3.5)
 * Latest Font Awesome integration (4.3.0)
+* Ready-to-use Bootstrap component templates
 * Intuitive template tag API for generating valid Bootstrap markup
 * Extensive and up-to-date documentation
 * Mainstream Python (2.7, 3.3, 3.4) and Django (1.7, 1.8) support
@@ -78,6 +79,19 @@ Prepare your page for Bootstrap and provide your content:
         {% block body-content %}
             <h1>Hello, I'm using django-bootstrap-ui!</h1>
         {% endblock %}
+
+Bootstrap component templates
+*****************************
+
+Render complete Bootstrap components by including our default implementations. Example:
+
+#. Provide a list of strings ``['alpha', 'beta', 'gamma']`` as template variable ``items``
+
+#. Include ``listgroup.html`` parameterized with ``type='list'`` and ``items=items``:
+
+    .. code:: Django
+
+        {% include 'bootstrap_ui/listgroup.html' with type='list' items=items only %}
 
 Template tag API
 ****************

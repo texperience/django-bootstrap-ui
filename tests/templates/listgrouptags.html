@@ -1,13 +1,17 @@
 {% load bootstrap_ui_tags %}
 
-{% listgroup %}
-    {% listgroupitem %}
-        {{ content }}
-    {% endlistgroupitem %}
-{% endlistgroup %}
+{% if not items %}
+    {% listgroup %}
+        {% listgroupitem %}
+            {{ content }}
+        {% endlistgroupitem %}
+    {% endlistgroup %}
 
-{% if use_tag == 'a' %}
-    {% listgroupitem use_tag=use_tag link=link %}
-        {{ label }}
-    {% endlistgroupitem %}
+    {% if use_tag == 'a' %}
+        {% listgroupitem use_tag=use_tag link=link %}
+            {{ label }}
+        {% endlistgroupitem %}
+    {% endif %}
 {% endif %}
+
+{% include 'bootstrap_ui/listgroup.html' with type=type items=items only %}

@@ -1,0 +1,21 @@
+{% load bootstrap_ui_tags %}
+
+{% if type == 'list' %}
+    {% listgroup %}
+        {% for text in items %}
+            {% listgroupitem %}
+                {{ text }}
+            {% endlistgroupitem %}
+        {% endfor %}
+    {% endlistgroup %}
+{% elif type == 'linklist' %}
+    {% listgroup use_tag='div' %}
+        {% for text, url in items %}
+            {% with link=url|default:'#' %}
+                {% listgroupitem use_tag='a' link=link %}
+                    {{ text }}
+                {% endlistgroupitem %}
+            {% endwith %}
+        {% endfor %}
+    {% endlistgroup %}
+{% endif %}

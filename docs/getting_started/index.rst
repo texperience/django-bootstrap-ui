@@ -42,6 +42,19 @@ Prepare your page for Bootstrap and provide your content:
             <h1>Hello, I'm using django-bootstrap-ui!</h1>
         {% endblock %}
 
+Bootstrap component templates
+*****************************
+
+Render complete Bootstrap components by including our default implementations. Example:
+
+#. Provide a list of strings ``['alpha', 'beta', 'gamma']`` as template variable ``items``
+
+#. Include ``listgroup.html`` parameterized with ``type='list'`` and ``items=items``:
+
+    .. code:: Django
+
+        {% include 'bootstrap_ui/listgroup.html' with type='list' items=items only %}
+
 Template tag API
 ****************
 

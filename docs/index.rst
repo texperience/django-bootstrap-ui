@@ -32,6 +32,7 @@ Features
 
 * Full-featured Bootstrap 3 template (3.3.5)
 * Latest Font Awesome integration (4.3.0)
+* Ready-to-use Bootstrap component templates
 * Intuitive template tag API for generating valid Bootstrap markup
 * Extensive and up-to-date documentation
 * Mainstream Python (2.7, 3.3, 3.4) and Django (1.7, 1.8) support

@@ -123,12 +123,25 @@ class GridTagsTest(SimpleTestCase):
 class ListGroupTagsTest(SimpleTestCase):
     SAMPLE_LINK = 'http://example.org'
     SAMPLE_LABEL = 'Linklabel'
+    SAMPLE_LIST = [
+        'alpha',
+        'beta',
+        'gamma',
+    ]
+    SAMPLE_LINKLIST = [
+        ('alpha', SAMPLE_LINK),
+        ('beta', SAMPLE_LINK),
+        ('gamma', SAMPLE_LINK),
+    ]
 
     LIST_GROUP_START = mark_safe('<ul class="list-group">')
     LIST_GROUP_END = mark_safe('</ul>')
 
     LIST_GROUP_ITEM_START = mark_safe('<li class="list-group-item">')
     LIST_GROUP_ITEM_END = mark_safe('</li>')
+
+    LIST_GROUP_LINK_START = mark_safe('<div class="list-group">')
+    LIST_GROUP_LINK_END = mark_safe('</div>')
 
     LIST_GROUP_ITEM_LINK_START = mark_safe('<a class="list-group-item" href="' + SAMPLE_LINK + '">')
     LIST_GROUP_ITEM_LINK_END = mark_safe('</a>')
@@ -161,6 +174,32 @@ class ListGroupTagsTest(SimpleTestCase):
     def test_list_group_item_link_without_destination_raises_exception(self):
         with self.assertRaises(TemplateSyntaxError):
             self.template.render(Context({'use_tag': 'a'}))
+
+    def test_listgroup_list_is_rendered(self):
+        rendered = self.template.render(Context({'type': 'list', 'items': self.SAMPLE_LIST}))
+        self.assertInHTML(
+            self.LIST_GROUP_START
+            + ''.join(self.LIST_GROUP_ITEM_START + item + self.LIST_GROUP_ITEM_END for item in self.SAMPLE_LIST)
+            + self.LIST_GROUP_END,
+            rendered
+        )
+
+    def test_listgroup_without_type_is_empty(self):
+        rendered = self.template.render(Context({'items': self.SAMPLE_LIST}))
+        self.assertHTMLEqual('', rendered)
+
+    def test_listgroup_linklist_is_rendered(self):
+        rendered = self.template.render(Context({'type': 'linklist', 'items': self.SAMPLE_LINKLIST}))
+        self.assertInHTML(
+            self.LIST_GROUP_LINK_START
+            + ''.join(
+                self.LIST_GROUP_ITEM_LINK_START
+                + item[0]
+                + self.LIST_GROUP_ITEM_LINK_END for item in self.SAMPLE_LINKLIST
+            )
+            + self.LIST_GROUP_LINK_END,
+            rendered
+        )
 
 
 class PanelTagsTest(SimpleTestCase):
