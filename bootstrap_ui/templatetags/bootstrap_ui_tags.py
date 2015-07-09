@@ -1,4 +1,4 @@
-from django.template import Library, Node, TemplateSyntaxError
+from django.template import Library, TemplateSyntaxError
 from django.utils.safestring import mark_safe
 from dominate import tags
 from tag_parser import template_tag
