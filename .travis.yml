@@ -9,6 +9,7 @@ matrix:
     - env: TOXENV=py27-dj18
     - env: TOXENV=py33-dj18
     - env: TOXENV=py34-dj18
+    - env: TOXENV=flake8
 
 # Package installation
 install:
