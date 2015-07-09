@@ -20,7 +20,6 @@ setup(
     author='Timo Rieber',
     author_email='dev@timorieber.de',
     install_requires=[
-        'Django>=1.7,<1.9',
         'django-tag-parser>=2.1,<2.2',
         'dominate>=2.1,<2.2',
     ],
