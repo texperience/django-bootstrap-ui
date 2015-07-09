@@ -1,5 +1,6 @@
 import os
 from setuptools import setup, find_packages
+from bootstrap_ui import __version__
 
 with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
     README = readme.read()
@@ -9,7 +10,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-bootstrap-ui',
-    version='0.1.0rc1',
+    version=__version__,
     packages=find_packages(exclude=['tests', 'docs']),
     include_package_data=True,
     license='ISC License (ISCL)',
