@@ -1,0 +1,4 @@
+{% load bootstrap_ui_tags %}
+
+{% get_value_from_session_or_cookie 'DJANGO_BOOTSTRAP_UI_THEME' as theme %}
+Theme|{{ theme|default:'bootstrap-theme-default' }}
