@@ -32,12 +32,15 @@ Features
 
 * Full-featured Bootstrap 3 template (3.3.5)
 * Latest Font Awesome integration (4.3.0)
+* Built-in Bootstrap and `Bootswatch`_ themes (3.3.5)
 * Ready-to-use Bootstrap component templates
 * Intuitive template tag API for generating valid Bootstrap markup
 * Extensive and up-to-date documentation
 * Mainstream Python (2.7, 3.3, 3.4) and Django (1.7, 1.8) support
-* Outstanding `test coverage <https://coveralls.io/r/timorieber/django-bootstrap-ui?branch=master>`_
+* Outstanding test coverage
 * Continuously integrated codebase
+
+.. _Bootswatch: https://bootswatch.com/
 
 Installation
 ------------
@@ -79,6 +82,16 @@ Prepare your page for Bootstrap and provide your content:
         {% block body-content %}
             <h1>Hello, I'm using django-bootstrap-ui!</h1>
         {% endblock %}
+
+Themes
+******
+
+You can style your page with Bootstrap or Bootswatch themes. Set ``DJANGO_BOOTSTRAP_UI_THEME`` to a valid identifier in your ``settings.py`` for a project-wide default theme:
+
+.. code:: python
+
+    # django-bootstrap-ui settings
+    DJANGO_BOOTSTRAP_UI_THEME = 'bootswatch-paper'
 
 Bootstrap component templates
 *****************************

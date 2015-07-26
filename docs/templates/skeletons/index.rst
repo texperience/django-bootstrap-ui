@@ -111,3 +111,42 @@ Be careful when you are going to use these blocks with your own stuff. Remember 
         <!-- Page description -->
         <meta name="description" content="This is your page description." />
     {% endblock %}
+
+Apply themes
+************
+
+By default the standard, plain Bootstrap style is applied. But in addition, this template is ready to include Bootstrap and Bootswatch themes. You can change this behavior in two ways, they may be used together:
+
+#. Set ``DJANGO_BOOTSTRAP_UI_THEME`` to a valid identifier in your ``settings.py`` for a project-wide default theme:
+
+    .. code:: python
+
+        # django-bootstrap-ui settings
+        DJANGO_BOOTSTRAP_UI_THEME = 'bootswatch-paper'
+
+#. Set ``DJANGO_BOOTSTRAP_UI_THEME`` to a valid identifier in your user's session or cookie using the :doc:`set_theme <../../views/index>` view.
+
+The following table lists currently available themes:
+
+=============  ====================  ===========
+Name           Identifier            Provided by
+=============  ====================  ===========
+Example theme  bootstrap             Bootstrap
+Cerulean       bootswatch-cerulean   Bootswatch
+Cosmo          bootswatch-cosmo      Bootswatch
+Cyborg         bootswatch-cyborg     Bootswatch
+Darkly         bootswatch-darkly     Bootswatch
+Flatly         bootswatch-flatly     Bootswatch
+Journal        bootswatch-journal    Bootswatch
+Lumen          bootswatch-lumen      Bootswatch
+Paper          bootswatch-paper      Bootswatch
+Readable       bootswatch-readable   Bootswatch
+Sandstone      bootswatch-sandstone  Bootswatch
+Simplex        bootswatch-simplex    Bootswatch
+Slate          bootswatch-slate      Bootswatch
+Spacelab       bootswatch-spacelab   Bootswatch
+Superhero      bootswatch-superhero  Bootswatch
+United         bootswatch-united     Bootswatch
+Yeti           bootswatch-yeti       Bootswatch
+
+All other values will be ignored and default to the standard, plain Bootstrap style.

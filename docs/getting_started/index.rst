@@ -42,6 +42,18 @@ Prepare your page for Bootstrap and provide your content:
             <h1>Hello, I'm using django-bootstrap-ui!</h1>
         {% endblock %}
 
+Themes
+******
+
+You can style your page with Bootstrap or Bootswatch themes. Set ``DJANGO_BOOTSTRAP_UI_THEME`` to a valid identifier in your ``settings.py`` for a project-wide default theme:
+
+.. code:: python
+
+    # django-bootstrap-ui settings
+    DJANGO_BOOTSTRAP_UI_THEME = 'bootswatch-paper'
+
+See :doc:`../templates/skeletons/index` for more details.
+
 Bootstrap component templates
 *****************************
 
