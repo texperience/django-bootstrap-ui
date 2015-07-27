@@ -25,6 +25,7 @@ def get_value_from_session_or_cookie(context, key):
             # Third fallback to settings or return default value
             return getattr(settings, key, '')
 
+
 @template_tag(register, 'htmltag')
 class HtmlTagNode(BaseNode):
     """Implements html tag fundamentals"""
