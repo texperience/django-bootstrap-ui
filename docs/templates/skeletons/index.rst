@@ -148,5 +148,6 @@ Spacelab       bootswatch-spacelab   Bootswatch
 Superhero      bootswatch-superhero  Bootswatch
 United         bootswatch-united     Bootswatch
 Yeti           bootswatch-yeti       Bootswatch
+=============  ====================  ===========
 
 All other values will be ignored and default to the standard, plain Bootstrap style.
