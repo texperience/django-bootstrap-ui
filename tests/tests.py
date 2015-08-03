@@ -147,6 +147,13 @@ class ListGroupTagsTest(SimpleTestCase):
     LIST_GROUP_ITEM_LINK_START = mark_safe('<a class="list-group-item" href="' + SAMPLE_LINK + '">')
     LIST_GROUP_ITEM_LINK_END = mark_safe('</a>')
 
+    LIST_GROUP_BUTTON_START = LIST_GROUP_LINK_START
+    LIST_GROUP_BUTTON_END = LIST_GROUP_LINK_END
+
+    LIST_GROUP_ITEM_LINK_START = mark_safe('<a class="list-group-item" href="' + SAMPLE_LINK + '">')
+    LIST_GROUP_ITEM_BUTTON_START = mark_safe('<button class="list-group-item" type="button">')
+    LIST_GROUP_ITEM_BUTTON_END = mark_safe('</button>')
+
     def setUp(self):
         self.template = get_template('listgrouptags.html')
 
@@ -171,6 +178,12 @@ class ListGroupTagsTest(SimpleTestCase):
             Context({'use_tag': 'a', 'link': self.SAMPLE_LINK, 'label': self.SAMPLE_LABEL})
         )
         self.assertInHTML(self.LIST_GROUP_ITEM_LINK_START + self.SAMPLE_LABEL + self.LIST_GROUP_ITEM_LINK_END, rendered)
+
+    def test_list_group_item_button_is_rendered(self):
+        rendered = self.template.render(
+            Context({'use_tag': 'button', 'label': self.SAMPLE_LABEL})
+        )
+        self.assertInHTML(self.LIST_GROUP_ITEM_BUTTON_START + self.SAMPLE_LABEL + self.LIST_GROUP_ITEM_BUTTON_END, rendered)
 
     def test_list_group_item_link_without_destination_raises_exception(self):
         with self.assertRaises(TemplateSyntaxError):
@@ -199,6 +212,19 @@ class ListGroupTagsTest(SimpleTestCase):
                 + self.LIST_GROUP_ITEM_LINK_END for item in self.SAMPLE_LINKLIST
             )
             + self.LIST_GROUP_LINK_END,
+            rendered
+        )
+
+    def test_listgroup_buttonlist_is_rendered(self):
+        rendered = self.template.render(Context({'type': 'buttonlist', 'items': self.SAMPLE_LIST}))
+        self.assertInHTML(
+            self.LIST_GROUP_BUTTON_START
+            + ''.join(
+                self.LIST_GROUP_ITEM_BUTTON_START
+                + item
+                + self.LIST_GROUP_ITEM_BUTTON_END for item in self.SAMPLE_LIST
+            )
+            + self.LIST_GROUP_BUTTON_END,
             rendered
         )
 

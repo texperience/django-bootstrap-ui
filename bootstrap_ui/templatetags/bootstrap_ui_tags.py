@@ -182,7 +182,7 @@ class ListGroupItemNode(BootstrapNode):
     end_tag_name = 'endlistgroupitem'
 
     # Overwrite HtmlTagNode attributes
-    allowed_tags = ['a', 'div', 'li']
+    allowed_tags = ['a', 'button', 'div', 'li']
     default_css_classes = ['list-group-item']
     default_tag = 'li'
 
@@ -197,6 +197,9 @@ class ListGroupItemNode(BootstrapNode):
                 )
 
             htmltag.set_attribute('href', scope['link'])
+
+        if scope['use_tag'] == 'button':
+            htmltag.set_attribute('type', 'button')
 
         return mark_safe(htmltag.render())
 

@@ -143,6 +143,35 @@ This renders the following html code:
         </li>
     </ul>
 
+Button items
+************
+
+Provide ``use_tag`` parameters to ``listgroup`` and ``listgroupitem`` to render button items:
+
+.. code:: Django
+
+    {% listgroup use_tag="div" %}
+        {% listgroupitem use_tag="button" %}
+            First button with {{ your_text }}
+        {% endlistgroupitem %}
+        {% listgroupitem use_tag="button" %}
+            Second button with {{ your_second_text }}
+        {% endlistgroupitem %}
+    {% endlistgroup %}
+
+This renders the following html code:
+
+.. code:: HTML
+
+    <div class="list-group">
+        <button class="list-group-item" type="button">
+            First button with your text.
+        </button>
+        <button class="list-group-item" type="button">
+            Second button with your second text.
+        </button>
+    </div>
+
 Linked items
 ************
 

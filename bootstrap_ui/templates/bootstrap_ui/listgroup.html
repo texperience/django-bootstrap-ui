@@ -8,6 +8,14 @@
             {% endlistgroupitem %}
         {% endfor %}
     {% endlistgroup %}
+{% elif type == 'buttonlist' %}
+    {% listgroup use_tag='div' %}
+        {% for text in items %}
+            {% listgroupitem use_tag='button' %}
+                {{ text }}
+            {% endlistgroupitem %}
+        {% endfor %}
+    {% endlistgroup %}
 {% elif type == 'linklist' %}
     {% listgroup use_tag='div' %}
         {% for text, url in items %}

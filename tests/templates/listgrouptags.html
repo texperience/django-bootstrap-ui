@@ -12,6 +12,12 @@
             {{ label }}
         {% endlistgroupitem %}
     {% endif %}
+
+    {% if use_tag == 'button' %}
+        {% listgroupitem use_tag=use_tag %}
+            {{ label }}
+        {% endlistgroupitem %}
+    {% endif %}
 {% endif %}
 
 {% include 'bootstrap_ui/listgroup.html' with type=type items=items only %}

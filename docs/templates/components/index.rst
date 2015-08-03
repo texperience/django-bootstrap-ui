@@ -36,6 +36,31 @@ This renders the following html code:
         </li>
     </ul>
 
+Button items
+************
+
+Given a list of strings ``['alpha', 'beta', 'gamma']`` as template variable ``items``:
+
+.. code:: Django
+
+    {% include 'bootstrap_ui/listgroup.html' with type='buttonlist' items=items only %}
+
+This renders the following html code:
+
+.. code:: HTML
+
+    <div class="list-group">
+        <button class="list-group-item" type="button">
+            alpha
+        </button>
+        <button class="list-group-item" type="button">
+            beta
+        </button>
+        <button class="list-group-item" type="button">
+            gamma
+        </button>
+    </div>
+
 Linked items
 ************
 
