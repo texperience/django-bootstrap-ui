@@ -45,11 +45,11 @@ Features
 Installation
 ------------
 
-#. First install the package using ``pip`` with the ``--pre`` option as long as this is a pre-release:
+#. First install the package using ``pip``:
 
     .. code:: bash
 
-        pip install --pre django-bootstrap-ui
+        pip install django-bootstrap-ui
 
 #. Add ``bootstrap_ui`` to your ``INSTALLED_APPS`` setting:
 
