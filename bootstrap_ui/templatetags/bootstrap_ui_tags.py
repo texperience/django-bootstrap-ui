@@ -178,7 +178,7 @@ class ListGroupNode(BootstrapNode):
 class ListGroupItemNode(BootstrapNode):
     """Renders a list group item"""
     # Overwrite BaseNode attributes
-    BootstrapNode.allowed_kwargs += ('link',)
+    BootstrapNode.allowed_kwargs += ('add_css_classes', 'link',)
     end_tag_name = 'endlistgroupitem'
 
     # Overwrite HtmlTagNode attributes
@@ -205,6 +205,7 @@ class ListGroupItemNode(BootstrapNode):
 class PanelNode(BootstrapNode):
     """Renders a panel"""
     # Overwrite BaseNode attributes
+    BootstrapNode.allowed_kwargs += ('add_css_classes',)
     end_tag_name = 'endpanel'
 
     # Overwrite HtmlTagNode attributes

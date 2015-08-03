@@ -172,6 +172,76 @@ This renders the following html code:
         </a>
     </div>
 
+Disabled items
+**************
+
+Provide ``add_css_classes`` parameter for ``listgroupitem``:
+
+.. code:: Django
+
+    {% listgroup use_tag="div" %}
+        {% listgroupitem use_tag="a" link="http://example.org" add_css_classes="disabled" %}
+            External link to {{ ext_page_title }}, but in disabled state.
+        {% endlistgroupitem %}
+        {% listgroupitem use_tag="a" link=local_reference %}
+            Internal link to {{ your_page_title }}. This one is enabled.
+        {% endlistgroupitem %}
+    {% endlistgroup %}
+
+This renders the following html code:
+
+.. code:: HTML
+
+    <div class="list-group">
+        <a class="list-group-item disabled" href="http://example.org">
+            External link to Example, but in disabled state.
+        </a>
+        <a class="list-group-item" href="your_local_link">
+            Internal link to awesame internal page.  This one is enabled.
+        </a>
+    </div>
+
+Contextual classes
+******************
+
+Provide valid bootstrap class names to ``add_css_classes`` parameter for ``listgroupitem``:
+
+.. code:: Django
+
+    {% listgroup %}
+        {% listgroupitem add_css_classes="list-group-item-success" %}
+            Your success text.
+        {% endlistgroupitem %}
+        {% listgroupitem add_css_classes="list-group-item-info" %}
+            Your info text.
+        {% endlistgroupitem %}
+        {% listgroupitem add_css_classes="list-group-item-warning" %}
+            Your warning text.
+        {% endlistgroupitem %}
+        {% listgroupitem add_css_classes="list-group-item-danger" %}
+            Your danger text.
+        {% endlistgroupitem %}
+    {% endlistgroup %}
+
+This renders the following html code:
+
+.. code:: HTML
+
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-success">
+            Your success text.
+        </li>
+        <li class="list-group-item list-group-item-info">
+            Your info text.
+        </li>
+        <li class="list-group-item list-group-item-warning">
+            Your warning text.
+        </li>
+        <li class="list-group-item list-group-item-danger">
+            Your danger text.
+        </li>
+    </ul>
+
 Custom content
 **************
 
@@ -310,6 +380,31 @@ This renders the following html code:
             Your panel footer
         </div>
     </div>
+
+Contextual alternatives
+***********************
+
+Provide valid bootstrap class names to ``add_css_classes`` parameter for ``panel``:
+
+.. code:: Django
+
+    {% panel add_css_classes="panel-primary" %}
+        {% panelbody %}
+            Your primary panel.
+        {% endpanelbody %}
+    {% endpanel %}
+
+This renders the following html code:
+
+.. code:: HTML
+
+    <div class="panel panel-default panel-primary">
+        <div class="panel-body">
+            Your primary panel.
+        </div>
+    </div>
+
+Other valid css classes are ``panel-success``, ``panel-info``, ``panel-warning`` and ``panel-danger``.
 
 With list groups
 ****************
