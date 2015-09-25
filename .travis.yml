@@ -1,5 +1,8 @@
 language: python
 
+# Use container-based infrastructure
+sudo: false
+
 # Test environments
 matrix:
   include:
