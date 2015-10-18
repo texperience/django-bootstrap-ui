@@ -53,3 +53,4 @@ Index
    template_tag_api/index
    views/index
    reference/index
+   releases/index
