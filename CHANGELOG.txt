@@ -1,9 +1,16 @@
 Changelog
 =========
 
-0.2.0 (xxxx-xx-xx)
+0.3.0 (xxxx-xx-xx)
 ------------------
 
+
+0.2.0 (2015-12-13)
+------------------
+
+* Implemented grid column offsets
+* Added grid column pushes and pulls
+* Added support for Django 1.9
 * Added support for Python 3.5
 
 
