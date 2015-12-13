@@ -8,4 +8,5 @@ Features
 
 * Implemented grid column offsets
 * Added grid column pushes and pulls
-* Established support for Python 3.5
+* Added support for Django 1.9
+* Added support for Python 3.5

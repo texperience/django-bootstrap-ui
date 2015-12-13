@@ -21,7 +21,7 @@ setup(
     author='Timo Rieber',
     author_email='dev@timorieber.de',
     install_requires=[
-        'django>=1.7,<1.9',
+        'django>=1.7,<1.10',
         'django-tag-parser>=2.1,<2.2',
         'dominate>=2.1,<2.2',
     ],
@@ -31,6 +31,7 @@ setup(
         'Framework :: Django',
         'Framework :: Django :: 1.7',
         'Framework :: Django :: 1.8',
+        'Framework :: Django :: 1.9',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: ISC License (ISCL)',
         'Operating System :: OS Independent',

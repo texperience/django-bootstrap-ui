@@ -36,7 +36,7 @@ Features
 * Ready-to-use Bootstrap component templates
 * Intuitive template tag API for generating valid Bootstrap markup
 * Extensive and up-to-date documentation
-* Mainstream Python (2.7, 3.3, 3.4, 3.5) and Django (1.7, 1.8) support
+* Mainstream Python (2.7, 3.3, 3.4, 3.5) and Django (1.7, 1.8, 1.9) support
 * Outstanding test coverage
 * Continuously integrated codebase
 
