@@ -4,6 +4,8 @@ Changelog
 0.3.0 (xxxx-xx-xx)
 ------------------
 
+* Upgraded to Bootstrap 3.3.6
+
 
 0.2.0 (2015-12-13)
 ------------------
