@@ -116,7 +116,7 @@ Provide ``xs_offset``, ``sm_offset``, ``md_offset`` and/or ``lg_offset`` paramet
 
 .. code:: Django
 
-    {% column xs="8" md="10" md_offset="1" %}
+    {% column xs="7" md="10" md_offset="1" %}
         Lorem ipsum. Your content goes here!
     {% endcolumn %}
 
@@ -124,8 +124,35 @@ This renders the following html code:
 
 .. code:: HTML
 
-    <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <div class="col-xs-7 col-md-10 col-md-offset-1">
         Lorem ipsum. Your content goes here!
+    </div>
+
+Every individual parameter may be omitted, you can use any combination of them.
+
+Column ordering with pushes and pulls
++++++++++++++++++++++++++++++++++++++
+
+Provide ``xs_push``, ``sm_push``, ``md_push`` and/or ``lg_push`` parameters as well as the ``pull`` equivalents to easily change to order of columns:
+
+.. code:: Django
+
+    {% column md="9" md_push="3" %}
+        Defined first, showing second at md and greater devices
+    {% endcolumn %}
+    {% column md="3" md_pull="9" %}
+        Defined second, showing first at md and greater devices
+    {% endcolumn %}
+
+This renders the following html code:
+
+.. code:: HTML
+
+    <div class="col-md-9 col-md-push-3">
+        Defined first, showing second at md and greater devices
+    </div>
+    <div class="col-md-3 col-md-pull-9">
+        Defined second, showing first at md and greater devices
     </div>
 
 Every individual parameter may be omitted, you can use any combination of them.

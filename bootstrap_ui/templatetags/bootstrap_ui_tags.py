@@ -101,7 +101,12 @@ class BootstrapNode(HtmlTagNode):
 class ColumnNode(BootstrapNode):
     """Renders a column"""
     # Overwrite BaseNode attributes
-    allowed_kwargs = ('xs', 'sm', 'md', 'lg', 'xs_offset', 'sm_offset', 'md_offset', 'lg_offset')
+    allowed_kwargs = (
+        'xs', 'sm', 'md', 'lg',
+        'xs_offset', 'sm_offset', 'md_offset', 'lg_offset',
+        'xs_push', 'sm_push', 'md_push', 'lg_push',
+        'xs_pull', 'sm_pull', 'md_pull', 'lg_pull',
+    )
     end_tag_name = 'endcolumn'
 
     # Overwrite HtmlTagNode attributes
@@ -118,7 +123,12 @@ class ColumnNode(BootstrapNode):
         if apply_grid_classes:
             htmltag.set_attribute(
                 'class',
-                ' '.join('col-' + grid_class.replace('_', '-') + '-' + (scope[grid_class] or '12') for grid_class in apply_grid_classes)
+                ' '.join(
+                    'col-'
+                    + grid_class.replace('_', '-')
+                    + '-'
+                    + (scope[grid_class] or '12') for grid_class in apply_grid_classes
+                )
             )
 
         return mark_safe(htmltag.render())

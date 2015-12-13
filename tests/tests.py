@@ -65,6 +65,8 @@ class GridTagsTest(SimpleTestCase):
     SAMPLE_COLUMN_WIDTH = '7'
     SAMPLE_MD_COLUMN_WIDTH = '10'
     SAMPLE_MD_OFFSET_WIDTH = '1'
+    SAMPLE_MD_PUSH_WIDTH = '2'
+    SAMPLE_MD_PULL_WIDTH = '8'
 
     CONTAINER_START = mark_safe('<div class="container">')
     CONTAINER_END = mark_safe('</div>')
@@ -98,6 +100,24 @@ class GridTagsTest(SimpleTestCase):
         + '">'
     )
     COLUMN_MD_OFFSET_END = CONTAINER_END
+
+    COLUMN_MD_PUSH_START = mark_safe(
+        '<div class="'
+        + 'col-md-' + str(12 - int(SAMPLE_MD_PUSH_WIDTH))
+        + ' col-md-push-' + SAMPLE_MD_PUSH_WIDTH
+        + '">'
+    )
+
+    COLUMN_MD_PUSH_END = CONTAINER_END
+
+    COLUMN_MD_PULL_START = mark_safe(
+        '<div class="'
+        + 'col-md-' + str(12 - int(SAMPLE_MD_PULL_WIDTH))
+        + ' col-md-pull-' + SAMPLE_MD_PULL_WIDTH
+        + '">'
+    )
+
+    COLUMN_MD_PULL_END = CONTAINER_END
 
     def setUp(self):
         self.template = get_template('gridtags.html')
@@ -138,6 +158,20 @@ class GridTagsTest(SimpleTestCase):
             'md_offset': self.SAMPLE_MD_OFFSET_WIDTH
         }))
         self.assertInHTML(self.COLUMN_MD_OFFSET_START + self.COLUMN_MD_OFFSET_END, rendered)
+
+    def test_column_grid_with_push_is_rendered(self):
+        rendered = self.template.render(Context({
+            'md': str(12 - int(self.SAMPLE_MD_PUSH_WIDTH)),
+            'md_push': self.SAMPLE_MD_PUSH_WIDTH
+        }))
+        self.assertInHTML(self.COLUMN_MD_PUSH_START + self.COLUMN_MD_PUSH_END, rendered)
+
+    def test_column_grid_with_pull_is_rendered(self):
+        rendered = self.template.render(Context({
+            'md': str(12 - int(self.SAMPLE_MD_PULL_WIDTH)),
+            'md_pull': self.SAMPLE_MD_PULL_WIDTH
+        }))
+        self.assertInHTML(self.COLUMN_MD_PULL_START + self.COLUMN_MD_PULL_END, rendered)
 
 
 class ListGroupTagsTest(SimpleTestCase):
