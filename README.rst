@@ -31,7 +31,7 @@ Features
 --------
 
 * Full-featured Bootstrap 3 template (3.3.6)
-* Latest Font Awesome integration (4.3.0)
+* Latest Font Awesome integration (4.5.0)
 * Built-in Bootstrap and `Bootswatch`_ themes (3.3.6)
 * Ready-to-use Bootstrap component templates
 * Intuitive template tag API for generating valid Bootstrap markup
