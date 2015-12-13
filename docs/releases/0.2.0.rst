@@ -6,4 +6,5 @@ All features, bug fixes as well as code cleanup and optimization changes are lis
 Features
 --------
 
+* Implemented grid column offsets
 * Established support for Python 3.5

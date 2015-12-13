@@ -63,18 +63,20 @@ class BootstrapTagsTest(SimpleTestCase):
 class GridTagsTest(SimpleTestCase):
     SAMPLE_CONTENT = 'Lorem ipsum'
     SAMPLE_COLUMN_WIDTH = '7'
+    SAMPLE_MD_COLUMN_WIDTH = '10'
+    SAMPLE_MD_OFFSET_WIDTH = '1'
 
     CONTAINER_START = mark_safe('<div class="container">')
     CONTAINER_END = mark_safe('</div>')
 
     CONTAINER_FLUID_START = mark_safe('<div class="container-fluid">')
-    CONTAINER_FLUID_END = mark_safe('</div>')
+    CONTAINER_FLUID_END = CONTAINER_END
 
     ROW_START = mark_safe('<div class="row">')
-    ROW_END = mark_safe('</div>')
+    ROW_END = CONTAINER_END
 
     COLUMN_START = mark_safe('<div class="col-xs-12">')
-    COLUMN_END = mark_safe('</div>')
+    COLUMN_END = CONTAINER_END
 
     COLUMN_CUSTOM_WIDTH_START = mark_safe(
         '<div class="'
@@ -84,9 +86,18 @@ class GridTagsTest(SimpleTestCase):
         + ' col-lg-' + SAMPLE_COLUMN_WIDTH
         + '">'
     )
-    COLUMN_CUSTOM_WIDTH_END = mark_safe('</div>')
+    COLUMN_CUSTOM_WIDTH_END = CONTAINER_END
 
     COLUMN_CUSTOM_WIDTH_DEFAULT = '<div class="col-lg-12" />'
+
+    COLUMN_MD_OFFSET_START = mark_safe(
+        '<div class="'
+        + 'col-xs-' + SAMPLE_COLUMN_WIDTH
+        + ' col-md-' + SAMPLE_MD_COLUMN_WIDTH
+        + ' col-md-offset-' + SAMPLE_MD_OFFSET_WIDTH
+        + '">'
+    )
+    COLUMN_MD_OFFSET_END = CONTAINER_END
 
     def setUp(self):
         self.template = get_template('gridtags.html')
@@ -119,6 +130,14 @@ class GridTagsTest(SimpleTestCase):
     def test_column_custom_grid_with_defaults_is_rendered(self):
         rendered = self.template.render(Context({'lg': ''}))
         self.assertInHTML(self.COLUMN_CUSTOM_WIDTH_DEFAULT, rendered)
+
+    def test_column_grid_with_offset_is_rendered(self):
+        rendered = self.template.render(Context({
+            'xs': self.SAMPLE_COLUMN_WIDTH,
+            'md': self.SAMPLE_MD_COLUMN_WIDTH,
+            'md_offset': self.SAMPLE_MD_OFFSET_WIDTH
+        }))
+        self.assertInHTML(self.COLUMN_MD_OFFSET_START + self.COLUMN_MD_OFFSET_END, rendered)
 
 
 class ListGroupTagsTest(SimpleTestCase):

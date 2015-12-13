@@ -109,6 +109,27 @@ This renders the following html code:
 
 Every individual parameter may be omitted, you can use any combination of them.
 
+Column offsets
+++++++++++++++
+
+Provide ``xs_offset``, ``sm_offset``, ``md_offset`` and/or ``lg_offset`` parameters to increase the left margin of a column:
+
+.. code:: Django
+
+    {% column xs="8" md="10" md_offset="1" %}
+        Lorem ipsum. Your content goes here!
+    {% endcolumn %}
+
+This renders the following html code:
+
+.. code:: HTML
+
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+        Lorem ipsum. Your content goes here!
+    </div>
+
+Every individual parameter may be omitted, you can use any combination of them.
+
 List group
 ----------
 
