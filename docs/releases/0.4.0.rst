@@ -7,3 +7,4 @@ Features
 --------
 
 * Upgraded to Bootstrap 3.3.7
+* Upgraded to jQuery 1.12.4 
