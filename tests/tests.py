@@ -353,7 +353,7 @@ class TemplatesTest(TestCase):
         self.assertInHTML('<meta http-equiv="X-UA-Compatible" content="IE=edge">', rendered)
         self.assertInHTML('<meta name="viewport" content="width=device-width, initial-scale=1">', rendered)
         self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">', rendered)
-        self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">', rendered)
+        self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">', rendered)
         self.assertInHTML('<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>', rendered)
         self.assertInHTML('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>', rendered)
         self.assertNotIn('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">', rendered)
