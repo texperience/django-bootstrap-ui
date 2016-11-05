@@ -1,11 +1,11 @@
 Welcome to django-bootstrap-ui
 ==============================
 
-.. image:: https://img.shields.io/travis/timorieber/django-bootstrap-ui.svg?branch=master
-    :target: https://travis-ci.org/timorieber/django-bootstrap-ui
+.. image:: https://img.shields.io/travis/texperience/django-bootstrap-ui.svg?branch=master
+    :target: https://travis-ci.org/texperience/django-bootstrap-ui
 
-.. image:: https://img.shields.io/coveralls/timorieber/django-bootstrap-ui/master.svg
-    :target: https://coveralls.io/r/timorieber/django-bootstrap-ui?branch=master
+.. image:: https://img.shields.io/coveralls/texperience/django-bootstrap-ui/master.svg
+    :target: https://coveralls.io/r/texperience/django-bootstrap-ui?branch=master
 
 .. image:: https://img.shields.io/pypi/v/django-bootstrap-ui.svg
     :target: https://pypi.python.org/pypi/django-bootstrap-ui
@@ -25,7 +25,7 @@ The code is open source and released under the `ISC License (ISCL)`_. It is avai
 .. _Django web framework: https://www.djangoproject.com/
 .. _ISC License (ISCL): http://en.wikipedia.org/wiki/ISC_license
 .. _Semantic Versioning: http://semver.org/
-.. _GitHub: https://github.com/timorieber/django-bootstrap-ui
+.. _GitHub: https://github.com/texperience/django-bootstrap-ui
 
 Features
 --------
