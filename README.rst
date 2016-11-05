@@ -30,9 +30,9 @@ The code is open source and released under the `ISC License (ISCL)`_. It is avai
 Features
 --------
 
-* Full-featured Bootstrap 3 template (3.3.6)
+* Full-featured Bootstrap 3 template (3.3.7)
 * Latest Font Awesome integration (4.5.0)
-* Built-in Bootstrap and `Bootswatch`_ themes (3.3.6)
+* Built-in Bootstrap and `Bootswatch`_ themes (3.3.7)
 * Ready-to-use Bootstrap component templates
 * Intuitive template tag API for generating valid Bootstrap markup
 * Extensive and up-to-date documentation

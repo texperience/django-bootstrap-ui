@@ -1,8 +1,10 @@
-Changelog
-=========
+Changelog - IN DEVELOPMENT
+==========================
 
 0.4.0 (xxxx-xx-xx)
 ------------------
+
+* Upgraded to Bootstrap 3.3.7
 
 
 0.3.0 (2016-11-05)
