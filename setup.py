@@ -2,6 +2,19 @@ import os
 from setuptools import setup, find_packages
 from bootstrap_ui import __version__
 
+# Installation dependencies
+install_requires = [
+    'django>=1.7,<1.10',
+    'django-tag-parser>=2.1,<2.2',
+    'dominate>=2.1,<2.2',
+]
+
+# Testing dependencies
+testing_extras = [
+    'coverage>=4.0.3',
+    'flake8>=2.4.1',
+]
+
 with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
     README = readme.read()
 
@@ -20,11 +33,10 @@ setup(
     url='https://github.com/texperience/django-bootstrap-ui',
     author='Timo Rieber',
     author_email='trieber@texperience.de',
-    install_requires=[
-        'django>=1.7,<1.10',
-        'django-tag-parser>=2.1,<2.2',
-        'dominate>=2.1,<2.2',
-    ],
+    install_requires=install_requires,
+    extras_require={
+        'testing': testing_extras,
+    },
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
