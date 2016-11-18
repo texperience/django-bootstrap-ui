@@ -1,12 +1,14 @@
-Changelog - IN DEVELOPMENT
-==========================
+Changelog
+=========
 
-0.4.0 (xxxx-xx-xx)
-------------------
+0.4.0 (xxxx-xx-xx) - IN DEVELOPMENT
+-----------------------------------
 
 * Upgraded to Bootstrap 3.3.7
 * Upgraded to jQuery 1.12.4
-* Upgraded to Font Awesome 4.7.0 
+* Upgraded to Font Awesome 4.7.0
+* Added support for Django 1.10
+* Dropped support for Django 1.7
 
 
 0.3.0 (2016-11-05)

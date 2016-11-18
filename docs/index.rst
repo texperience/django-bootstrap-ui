@@ -36,11 +36,24 @@ Features
 * Ready-to-use Bootstrap component templates
 * Intuitive template tag API for generating valid Bootstrap markup
 * Extensive and up-to-date documentation
-* Mainstream Python (2.7, 3.3, 3.4, 3.5) and Django (1.7, 1.8, 1.9) support
+* Mainstream Python (2.7, 3.3, 3.4, 3.5) and Django (1.8, 1.9, 1.10) support
 * Outstanding test coverage
 * Continuously integrated codebase
 
 .. _Bootswatch: https://bootswatch.com/
+
+Technical requirements
+----------------------
+
+Below is the list of currently supported combinations of Django and Python:
+
++------------+------------+--------------------+
+| #          | Django     | Python             |
++============+============+====================+
+| 1          | 1.8        | 2.7, 3.3, 3.4, 3.5 |
++------------+------------+--------------------+
+| 2          | 1.9, 1.10  | 2.7, 3.4, 3.5      |
++------------+------------+--------------------+
 
 Index
 -----

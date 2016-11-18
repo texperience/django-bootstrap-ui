@@ -13,13 +13,17 @@ MIDDLEWARE_CLASSES = (
 )
 ROOT_URLCONF = 'tests.urls'
 SECRET_KEY = 'test-key'
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.request',
-)
-TEMPLATE_DIRS = (
-    'tests/templates',
-)
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+        'DIRS': [
+            'tests/templates',
+        ],
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.request',
+            ]
+        },
+    },
+]
