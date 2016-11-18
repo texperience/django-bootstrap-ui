@@ -18,14 +18,9 @@ Welcome to django-bootstrap-ui's documentation!
 
 django-bootstrap-ui aims to be a powerful Django app to ease the integration of the popular `Bootstrap UI framework`_. It is written in `Python`_ and built on the `Django web framework <https://www.djangoproject.com/>`_.
 
-The code is open source and released under the `ISC License (ISCL)`_. It is available on `GitHub`_ and follows the guidelines about `Semantic Versioning`_ for transparency within the release cycle and backward compatibility whenever possible.
-
 .. _Bootstrap UI framework: http://getbootstrap.com/
 .. _Python: https://www.python.org/
 .. _Django web framework: https://www.djangoproject.com/
-.. _ISC License (ISCL): http://en.wikipedia.org/wiki/ISC_license
-.. _Semantic Versioning: http://semver.org/
-.. _GitHub: https://github.com/texperience/django-bootstrap-ui
 
 Features
 --------
@@ -54,6 +49,17 @@ Below is the list of currently supported combinations of Django and Python:
 +------------+------------+--------------------+
 | 2          | 1.9, 1.10  | 2.7, 3.4, 3.5      |
 +------------+------------+--------------------+
+
+Code and contribution
+---------------------
+
+The code is open source and released under the `ISC License (ISCL)`_. It is available on `GitHub`_ and follows the guidelines about `Semantic Versioning`_ for transparency within the release cycle and backward compatibility whenever possible.
+
+All contributions are welcome, whether bug reports, code contributions and reviews, documentation or feature requests.
+
+.. _ISC License (ISCL): http://en.wikipedia.org/wiki/ISC_license
+.. _Semantic Versioning: http://semver.org/
+.. _GitHub: https://github.com/texperience/django-bootstrap-ui
 
 Index
 -----
