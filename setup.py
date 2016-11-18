@@ -1,5 +1,7 @@
 import os
-from setuptools import setup, find_packages
+
+from setuptools import find_packages, setup
+
 from bootstrap_ui import __version__
 
 # Installation dependencies
@@ -16,9 +18,6 @@ testing_extras = [
     'isort>=4.2.0',
 ]
 
-with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
-    README = readme.read()
-
 # Allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
@@ -30,7 +29,7 @@ setup(
     license='ISC License (ISCL)',
     description='This aims to be a powerful Django app to ease the integration of the popular Bootstrap UI framework'
                 ' (http://getbootstrap.com).',
-    long_description=README,
+    long_description=open('README.rst').read(),
     url='https://github.com/texperience/django-bootstrap-ui',
     author='Timo Rieber',
     author_email='trieber@texperience.de',
