@@ -13,6 +13,7 @@ install_requires = [
 testing_extras = [
     'coverage>=4.0.3',
     'flake8>=2.4.1',
+    'isort>=4.2.0',
 ]
 
 with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:

@@ -26,6 +26,7 @@ develop: clean-pyc
 
 lint:
 	flake8 bootstrap_ui
+	isort --check-only --diff --recursive bootstrap_ui
 
 test:
 	python runtests.py
