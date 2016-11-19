@@ -13,8 +13,8 @@ Welcome to django-bootstrap-ui's documentation!
 .. image:: https://img.shields.io/pypi/l/django-bootstrap-ui.svg
     :target: http://en.wikipedia.org/wiki/ISC_license
 
-.. image:: https://readthedocs.org/projects/django-bootstrap-ui/badge/?version=latest
-    :target: http://django-bootstrap-ui.readthedocs.org/latest/
+.. image:: https://readthedocs.org/projects/django-bootstrap-ui/badge/?version=stable
+    :target: http://django-bootstrap-ui.readthedocs.org/stable/
 
 django-bootstrap-ui aims to be a powerful Django app to ease the integration of the popular `Bootstrap UI framework`_. It is written in `Python`_ and built on the `Django web framework <https://www.djangoproject.com/>`_.
 
