@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.template import Context, TemplateSyntaxError
 from django.template.loader import get_template
-from django.test import SimpleTestCase, TestCase
+from django.test import RequestFactory, SimpleTestCase, TestCase
 from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
 
@@ -203,7 +203,6 @@ class ListGroupTagsTest(SimpleTestCase):
     LIST_GROUP_BUTTON_START = LIST_GROUP_LINK_START
     LIST_GROUP_BUTTON_END = LIST_GROUP_LINK_END
 
-    LIST_GROUP_ITEM_LINK_START = mark_safe('<a class="list-group-item" href="' + SAMPLE_LINK + '">')
     LIST_GROUP_ITEM_BUTTON_START = mark_safe('<button class="list-group-item" type="button">')
     LIST_GROUP_ITEM_BUTTON_END = mark_safe('</button>')
 
@@ -339,8 +338,12 @@ class PanelTagsTest(SimpleTestCase):
 
 class TemplatesTest(TestCase):
     def setUp(self):
+        # Mock get request
+        self.request = RequestFactory().get('/')
+
+        # Provide template paths
         self.template_html5_skeleton = get_template('bootstrap_ui/html5-skeleton.html')
-        self.url_bootstrap_skeleton = reverse('render_named_template', kwargs={'template': 'bootstrap_ui/bootstrap-skeleton.html'})
+        self.template_bootstrap_skeleton = get_template('bootstrap_ui/bootstrap-skeleton.html')
 
     def test_html5_skeleton_is_rendered(self):
         rendered = self.template_html5_skeleton.render(Context({}))
@@ -349,7 +352,7 @@ class TemplatesTest(TestCase):
             '<body><h1>Hello, django-bootstrap-ui!</h1></body></html>', rendered)
 
     def test_bootstrap_skeleton_is_rendered(self):
-        rendered = str(self.client.get(self.url_bootstrap_skeleton).content)
+        rendered = self.template_bootstrap_skeleton.render(Context({'request': self.request}))
         self.assertInHTML('<meta http-equiv="X-UA-Compatible" content="IE=edge">', rendered)
         self.assertInHTML('<meta name="viewport" content="width=device-width, initial-scale=1">', rendered)
         self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">', rendered)
@@ -359,14 +362,14 @@ class TemplatesTest(TestCase):
         self.assertNotIn('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">', rendered)
 
     def test_bootstrap_skeleton_bootstrap_theme_is_rendered(self):
-        self.client.post(reverse('set_theme'), {'theme': 'bootstrap'})
-        rendered = str(self.client.get(self.url_bootstrap_skeleton).content)
+        self.request.session = {'DJANGO_BOOTSTRAP_UI_THEME': 'bootstrap'}
+        rendered = self.template_bootstrap_skeleton.render(Context({'request': self.request}))
         self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">', rendered)
         self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">', rendered)
 
     def test_bootstrap_skeleton_bootswatch_theme_is_rendered(self):
-        self.client.post(reverse('set_theme'), {'theme': 'bootswatch-paper'})
-        rendered = str(self.client.get(self.url_bootstrap_skeleton).content)
+        self.request.session = {'DJANGO_BOOTSTRAP_UI_THEME': 'bootswatch-paper'}
+        rendered = self.template_bootstrap_skeleton.render(Context({'request': self.request}))
         self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet" type="text/css">', rendered)
         self.assertNotIn('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">', rendered)
         self.assertNotIn('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">', rendered)
@@ -374,17 +377,21 @@ class TemplatesTest(TestCase):
 
 class ThemingTest(TestCase):
     def setUp(self):
+        # Mock get request
+        self.request = RequestFactory().get('/')
+
+        # Provide template paths
+        self.template_assignment_tags = get_template('assignmenttags.html')
         self.url_set_theme_view = reverse('set_theme')
-        self.url_render_assignment_tags_template = reverse('render_named_template', kwargs={'template': 'assignmenttags.html'})
 
     def test_theme_in_session_is_set(self):
-        self.client.post(self.url_set_theme_view, {'theme': 'bootstrap-theme-in-session'})
-        self.assertEqual(self.client.session['DJANGO_BOOTSTRAP_UI_THEME'], 'bootstrap-theme-in-session')
+        with self.settings(MIDDLEWARE_CLASSES=('django.contrib.sessions.middleware.SessionMiddleware',)):
+            self.client.post(self.url_set_theme_view, {'theme': 'bootstrap-theme-in-session'})
+            self.assertEqual(self.client.session['DJANGO_BOOTSTRAP_UI_THEME'], 'bootstrap-theme-in-session')
 
     def test_theme_in_cookie_is_set(self):
-        with self.settings(MIDDLEWARE_CLASSES=()):
-            self.client.post(self.url_set_theme_view, {'theme': 'bootstrap-theme-in-cookies'})
-            self.assertEqual(self.client.cookies['DJANGO_BOOTSTRAP_UI_THEME'].value, 'bootstrap-theme-in-cookies')
+        self.client.post(self.url_set_theme_view, {'theme': 'bootstrap-theme-in-cookies'})
+        self.assertEqual(self.client.cookies['DJANGO_BOOTSTRAP_UI_THEME'].value, 'bootstrap-theme-in-cookies')
 
     def test_set_theme_is_redirected(self):
         # We are redirecting to non-existent urls/views and therefore expecting 404 codes in the end
@@ -398,21 +405,20 @@ class ThemingTest(TestCase):
         self.assertRedirects(response, '/foo/?bar=yes', 302, 404)
 
     def test_get_value_from_session_is_ok(self):
-        self.client.post(reverse('set_theme'), {'theme': 'bootstrap-theme-in-session'})
-        rendered = str(self.client.get(self.url_render_assignment_tags_template).content)
+        self.request.session = {'DJANGO_BOOTSTRAP_UI_THEME': 'bootstrap-theme-in-session'}
+        rendered = self.template_assignment_tags.render(Context({'request': self.request}))
         self.assertIn('Theme|bootstrap-theme-in-session', rendered)
 
     def test_get_value_from_cookie_is_ok(self):
-        with self.settings(MIDDLEWARE_CLASSES=()):
-            self.client.post(reverse('set_theme'), {'theme': 'bootstrap-theme-in-cookies'})
-            rendered = str(self.client.get(self.url_render_assignment_tags_template).content)
-            self.assertIn('Theme|bootstrap-theme-in-cookies', rendered)
+        self.request.COOKIES = {'DJANGO_BOOTSTRAP_UI_THEME': 'bootstrap-theme-in-cookies'}
+        rendered = self.template_assignment_tags.render(Context({'request': self.request}))
+        self.assertIn('Theme|bootstrap-theme-in-cookies', rendered)
 
     def test_get_value_from_settings_is_ok(self):
         with self.settings(DJANGO_BOOTSTRAP_UI_THEME='bootstrap-theme-in-settings'):
-            rendered = str(self.client.get(self.url_render_assignment_tags_template).content)
+            rendered = self.template_assignment_tags.render(Context({'request': self.request}))
             self.assertIn('Theme|bootstrap-theme-in-settings', rendered)
 
     def test_get_value_default_is_ok(self):
-        rendered = str(self.client.get(self.url_render_assignment_tags_template).content)
+        rendered = self.template_assignment_tags.render(Context({'request': self.request}))
         self.assertIn('Theme|bootstrap-theme-default', rendered)
