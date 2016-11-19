@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.4.0 (xxxx-xx-xx) - IN DEVELOPMENT
------------------------------------
+0.4.0 (2016-11-19)
+------------------
 
 * Upgraded to Bootstrap 3.3.7
 * Upgraded to jQuery 1.12.4
