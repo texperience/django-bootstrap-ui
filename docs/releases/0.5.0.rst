@@ -7,3 +7,4 @@ Features
 --------
 
 * Added support for Django 1.11
+* Added support for Python 3.6
