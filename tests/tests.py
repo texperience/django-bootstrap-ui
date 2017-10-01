@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.template import Context, TemplateSyntaxError
+from django.template import TemplateSyntaxError
 from django.template.loader import get_template
 from django.test import RequestFactory, SimpleTestCase, TestCase
 from django.core.urlresolvers import reverse
@@ -24,28 +24,28 @@ class HtmlTagNodeTest(SimpleTestCase):
         self.template = get_template('htmltag.html')
 
     def test_htmltag_is_rendered(self):
-        rendered = self.template.render(Context({}))
+        rendered = self.template.render({})
         self.assertInHTML(self.HTMLTAG_START + self.HTMLTAG_END, rendered)
 
     def test_htmltag_content_is_rendered(self):
-        rendered = self.template.render(Context({'content': self.SAMPLE_CONTENT}))
+        rendered = self.template.render({'content': self.SAMPLE_CONTENT})
         self.assertInHTML(self.HTMLTAG_START + self.SAMPLE_CONTENT + self.HTMLTAG_END, rendered)
 
     def test_htmltag_content_unicode_is_rendered(self):
-        rendered = self.template.render(Context({'content': self.SAMPLE_CONTENT_UNICODE}))
+        rendered = self.template.render({'content': self.SAMPLE_CONTENT_UNICODE})
         self.assertInHTML(self.HTMLTAG_START + self.SAMPLE_CONTENT_UNICODE + self.HTMLTAG_END, rendered)
 
     def test_htmltag_css_classes_are_rendered(self):
-        rendered = self.template.render(Context({'css': self.SAMPLE_CSS}))
+        rendered = self.template.render({'css': self.SAMPLE_CSS})
         self.assertInHTML(self.HTMLTAG_CSS_CLASSES_START + self.HTMLTAG_END, rendered)
 
     def test_htmltag_tag_is_rendered(self):
-        rendered = self.template.render(Context({'tag': self.SAMPLE_TAG}))
+        rendered = self.template.render({'tag': self.SAMPLE_TAG})
         self.assertInHTML(self.HTMLTAG_TAG_START + self.HTMLTAG_TAG_END, rendered)
 
     def test_htmltag_invalid_tag_raises_exception(self):
         with self.assertRaises(TemplateSyntaxError):
-            self.template.render(Context({'tag': self.SAMPLE_INVALID_TAG}))
+            self.template.render({'tag': self.SAMPLE_INVALID_TAG})
 
 
 class BootstrapTagsTest(SimpleTestCase):
@@ -56,7 +56,7 @@ class BootstrapTagsTest(SimpleTestCase):
         self.template = get_template('bootstraptag.html')
 
     def test_bootstraptag_is_rendered(self):
-        rendered = self.template.render(Context({}))
+        rendered = self.template.render({})
         self.assertInHTML(self.HTMLTAG_START + self.HTMLTAG_END, rendered)
 
 
@@ -123,7 +123,7 @@ class GridTagsTest(SimpleTestCase):
         self.template = get_template('gridtags.html')
 
     def test_container_with_row_column_and_content_is_rendered(self):
-        rendered = self.template.render(Context({'content': self.SAMPLE_CONTENT, 'type': 'fluid'}))
+        rendered = self.template.render({'content': self.SAMPLE_CONTENT, 'type': 'fluid'})
         self.assertInHTML(
             self.CONTAINER_START + self.ROW_START + self.COLUMN_START + self.SAMPLE_CONTENT + self.COLUMN_END
             + self.ROW_END + self.CONTAINER_END,
@@ -131,46 +131,46 @@ class GridTagsTest(SimpleTestCase):
         )
 
     def test_container_fluid_is_rendered(self):
-        rendered = self.template.render(Context({'type': 'fluid'}))
+        rendered = self.template.render({'type': 'fluid'})
         self.assertInHTML(self.CONTAINER_FLUID_START + self.CONTAINER_FLUID_END, rendered)
 
     def test_container_invalid_type_raises_exception(self):
         with self.assertRaises(TemplateSyntaxError):
-            self.template.render(Context({'type': 'foo'}))
+            self.template.render({'type': 'foo'})
 
     def test_column_custom_grid_is_rendered(self):
-        rendered = self.template.render(Context({
+        rendered = self.template.render({
             'xs': self.SAMPLE_COLUMN_WIDTH,
             'sm': self.SAMPLE_COLUMN_WIDTH,
             'md': self.SAMPLE_COLUMN_WIDTH,
             'lg': self.SAMPLE_COLUMN_WIDTH
-        }))
+        })
         self.assertInHTML(self.COLUMN_CUSTOM_WIDTH_START + self.COLUMN_CUSTOM_WIDTH_END, rendered)
 
     def test_column_custom_grid_with_defaults_is_rendered(self):
-        rendered = self.template.render(Context({'lg': ''}))
+        rendered = self.template.render({'lg': ''})
         self.assertInHTML(self.COLUMN_CUSTOM_WIDTH_DEFAULT, rendered)
 
     def test_column_grid_with_offset_is_rendered(self):
-        rendered = self.template.render(Context({
+        rendered = self.template.render({
             'xs': self.SAMPLE_COLUMN_WIDTH,
             'md': self.SAMPLE_MD_COLUMN_WIDTH,
             'md_offset': self.SAMPLE_MD_OFFSET_WIDTH
-        }))
+        })
         self.assertInHTML(self.COLUMN_MD_OFFSET_START + self.COLUMN_MD_OFFSET_END, rendered)
 
     def test_column_grid_with_push_is_rendered(self):
-        rendered = self.template.render(Context({
+        rendered = self.template.render({
             'md': str(12 - int(self.SAMPLE_MD_PUSH_WIDTH)),
             'md_push': self.SAMPLE_MD_PUSH_WIDTH
-        }))
+        })
         self.assertInHTML(self.COLUMN_MD_PUSH_START + self.COLUMN_MD_PUSH_END, rendered)
 
     def test_column_grid_with_pull_is_rendered(self):
-        rendered = self.template.render(Context({
+        rendered = self.template.render({
             'md': str(12 - int(self.SAMPLE_MD_PULL_WIDTH)),
             'md_pull': self.SAMPLE_MD_PULL_WIDTH
-        }))
+        })
         self.assertInHTML(self.COLUMN_MD_PULL_START + self.COLUMN_MD_PULL_END, rendered)
 
 
@@ -210,39 +210,35 @@ class ListGroupTagsTest(SimpleTestCase):
         self.template = get_template('listgrouptags.html')
 
     def test_list_group_is_rendered(self):
-        rendered = self.template.render(Context({}))
+        rendered = self.template.render({})
         self.assertIn(self.LIST_GROUP_START, rendered)
         self.assertIn(self.LIST_GROUP_END, rendered)
 
     def test_list_group_item_in_list_group_is_rendered(self):
-        rendered = self.template.render(Context({}))
+        rendered = self.template.render({})
         self.assertInHTML(
             self.LIST_GROUP_START + self.LIST_GROUP_ITEM_START + self.LIST_GROUP_ITEM_END + self.LIST_GROUP_END,
             rendered
         )
 
     def test_list_group_item_default_tag_is_rendered(self):
-        rendered = self.template.render(Context({}))
+        rendered = self.template.render({})
         self.assertInHTML(self.LIST_GROUP_ITEM_START + self.LIST_GROUP_ITEM_END, rendered)
 
     def test_list_group_item_link_is_rendered(self):
-        rendered = self.template.render(
-            Context({'use_tag': 'a', 'link': self.SAMPLE_LINK, 'label': self.SAMPLE_LABEL})
-        )
+        rendered = self.template.render({'use_tag': 'a', 'link': self.SAMPLE_LINK, 'label': self.SAMPLE_LABEL})
         self.assertInHTML(self.LIST_GROUP_ITEM_LINK_START + self.SAMPLE_LABEL + self.LIST_GROUP_ITEM_LINK_END, rendered)
 
     def test_list_group_item_button_is_rendered(self):
-        rendered = self.template.render(
-            Context({'use_tag': 'button', 'label': self.SAMPLE_LABEL})
-        )
+        rendered = self.template.render({'use_tag': 'button', 'label': self.SAMPLE_LABEL})
         self.assertInHTML(self.LIST_GROUP_ITEM_BUTTON_START + self.SAMPLE_LABEL + self.LIST_GROUP_ITEM_BUTTON_END, rendered)
 
     def test_list_group_item_link_without_destination_raises_exception(self):
         with self.assertRaises(TemplateSyntaxError):
-            self.template.render(Context({'use_tag': 'a'}))
+            self.template.render({'use_tag': 'a'})
 
     def test_listgroup_list_is_rendered(self):
-        rendered = self.template.render(Context({'type': 'list', 'items': self.SAMPLE_LIST}))
+        rendered = self.template.render({'type': 'list', 'items': self.SAMPLE_LIST})
         self.assertInHTML(
             self.LIST_GROUP_START
             + ''.join(self.LIST_GROUP_ITEM_START + item + self.LIST_GROUP_ITEM_END for item in self.SAMPLE_LIST)
@@ -251,11 +247,11 @@ class ListGroupTagsTest(SimpleTestCase):
         )
 
     def test_listgroup_without_type_is_empty(self):
-        rendered = self.template.render(Context({'items': self.SAMPLE_LIST}))
+        rendered = self.template.render({'items': self.SAMPLE_LIST})
         self.assertHTMLEqual('', rendered)
 
     def test_listgroup_linklist_is_rendered(self):
-        rendered = self.template.render(Context({'type': 'linklist', 'items': self.SAMPLE_LINKLIST}))
+        rendered = self.template.render({'type': 'linklist', 'items': self.SAMPLE_LINKLIST})
         self.assertInHTML(
             self.LIST_GROUP_LINK_START
             + ''.join(
@@ -268,7 +264,7 @@ class ListGroupTagsTest(SimpleTestCase):
         )
 
     def test_listgroup_buttonlist_is_rendered(self):
-        rendered = self.template.render(Context({'type': 'buttonlist', 'items': self.SAMPLE_LIST}))
+        rendered = self.template.render({'type': 'buttonlist', 'items': self.SAMPLE_LIST})
         self.assertInHTML(
             self.LIST_GROUP_BUTTON_START
             + ''.join(
@@ -306,7 +302,7 @@ class PanelTagsTest(SimpleTestCase):
         self.template = get_template('paneltags.html')
 
     def test_panel_is_rendered(self):
-        rendered = self.template.render(Context({}))
+        rendered = self.template.render({})
         self.assertInHTML(
             self.PANEL_START
             + self.PANEL_HEADING_START + self.PANEL_HEADING_END
@@ -316,11 +312,11 @@ class PanelTagsTest(SimpleTestCase):
         )
 
     def test_panel_heading_content_is_rendered(self):
-        rendered = self.template.render(Context({'heading': self.SAMPLE_HEADING}))
+        rendered = self.template.render({'heading': self.SAMPLE_HEADING})
         self.assertInHTML(self.PANEL_HEADING_START + self.SAMPLE_HEADING + self.PANEL_HEADING_END, rendered)
 
     def test_panel_title_content_is_rendered(self):
-        rendered = self.template.render(Context({'use_tag': 'h3', 'title': self.SAMPLE_TITLE}))
+        rendered = self.template.render({'use_tag': 'h3', 'title': self.SAMPLE_TITLE})
         self.assertInHTML(
             self.PANEL_HEADING_START + self.PANEL_TITLE_START
             + self.SAMPLE_TITLE
@@ -328,11 +324,11 @@ class PanelTagsTest(SimpleTestCase):
         )
 
     def test_panel_body_content_is_rendered(self):
-        rendered = self.template.render(Context({'body': self.SAMPLE_BODY}))
+        rendered = self.template.render({'body': self.SAMPLE_BODY})
         self.assertInHTML(self.PANEL_BODY_START + self.SAMPLE_BODY + self.PANEL_BODY_END, rendered)
 
     def test_panel_footer_content_is_rendered(self):
-        rendered = self.template.render(Context({'footer': self.SAMPLE_FOOTER}))
+        rendered = self.template.render({'footer': self.SAMPLE_FOOTER})
         self.assertInHTML(self.PANEL_FOOTER_START + self.SAMPLE_FOOTER + self.PANEL_FOOTER_END, rendered)
 
 
@@ -346,13 +342,13 @@ class TemplatesTest(TestCase):
         self.template_bootstrap_skeleton = get_template('bootstrap_ui/bootstrap-skeleton.html')
 
     def test_html5_skeleton_is_rendered(self):
-        rendered = self.template_html5_skeleton.render(Context({}))
+        rendered = self.template_html5_skeleton.render({})
         self.assertInHTML(
             '<html lang="en"><head><meta charset="utf-8"><title>django-bootstrap-ui template</title></head>'
             '<body><h1>Hello, django-bootstrap-ui!</h1></body></html>', rendered)
 
     def test_bootstrap_skeleton_is_rendered(self):
-        rendered = self.template_bootstrap_skeleton.render(Context({'request': self.request}))
+        rendered = self.template_bootstrap_skeleton.render({'request': self.request})
         self.assertInHTML('<meta http-equiv="X-UA-Compatible" content="IE=edge">', rendered)
         self.assertInHTML('<meta name="viewport" content="width=device-width, initial-scale=1">', rendered)
         self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">', rendered)
@@ -363,13 +359,13 @@ class TemplatesTest(TestCase):
 
     def test_bootstrap_skeleton_bootstrap_theme_is_rendered(self):
         self.request.session = {'DJANGO_BOOTSTRAP_UI_THEME': 'bootstrap'}
-        rendered = self.template_bootstrap_skeleton.render(Context({'request': self.request}))
+        rendered = self.template_bootstrap_skeleton.render({'request': self.request})
         self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">', rendered)
         self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">', rendered)
 
     def test_bootstrap_skeleton_bootswatch_theme_is_rendered(self):
         self.request.session = {'DJANGO_BOOTSTRAP_UI_THEME': 'bootswatch-paper'}
-        rendered = self.template_bootstrap_skeleton.render(Context({'request': self.request}))
+        rendered = self.template_bootstrap_skeleton.render({'request': self.request})
         self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet" type="text/css">', rendered)
         self.assertNotIn('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">', rendered)
         self.assertNotIn('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">', rendered)
@@ -406,19 +402,19 @@ class ThemingTest(TestCase):
 
     def test_get_value_from_session_is_ok(self):
         self.request.session = {'DJANGO_BOOTSTRAP_UI_THEME': 'bootstrap-theme-in-session'}
-        rendered = self.template_assignment_tags.render(Context({'request': self.request}))
+        rendered = self.template_assignment_tags.render({'request': self.request})
         self.assertIn('Theme|bootstrap-theme-in-session', rendered)
 
     def test_get_value_from_cookie_is_ok(self):
         self.request.COOKIES = {'DJANGO_BOOTSTRAP_UI_THEME': 'bootstrap-theme-in-cookies'}
-        rendered = self.template_assignment_tags.render(Context({'request': self.request}))
+        rendered = self.template_assignment_tags.render({'request': self.request})
         self.assertIn('Theme|bootstrap-theme-in-cookies', rendered)
 
     def test_get_value_from_settings_is_ok(self):
         with self.settings(DJANGO_BOOTSTRAP_UI_THEME='bootstrap-theme-in-settings'):
-            rendered = self.template_assignment_tags.render(Context({'request': self.request}))
+            rendered = self.template_assignment_tags.render({'request': self.request})
             self.assertIn('Theme|bootstrap-theme-in-settings', rendered)
 
     def test_get_value_default_is_ok(self):
-        rendered = self.template_assignment_tags.render(Context({'request': self.request}))
+        rendered = self.template_assignment_tags.render({'request': self.request})
         self.assertIn('Theme|bootstrap-theme-default', rendered)

@@ -6,7 +6,7 @@ from bootstrap_ui import __version__
 
 # Installation dependencies
 install_requires = [
-    'django>=1.8,<1.11',
+    'django>=1.8,<1.12',
     'django-tag-parser>=2.1,<2.2',
     'dominate>=2.1,<2.2',
 ]
@@ -44,6 +44,7 @@ setup(
         'Framework :: Django :: 1.8',
         'Framework :: Django :: 1.9',
         'Framework :: Django :: 1.10',
+        'Framework :: Django :: 1.11',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: ISC License (ISCL)',
         'Operating System :: OS Independent',
