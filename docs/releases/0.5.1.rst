@@ -1,0 +1,9 @@
+django-bootstrap-ui 0.5.1
+=========================
+
+All features, bug fixes as well as code cleanup and optimization changes are listed below.
+
+Features
+--------
+
+* Re-packaged for PyPI deployment
