@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog], and this project adheres to [Semantic Versioning][semver].
 
+## [Unreleased]
+
 ## [1.0.3] - 2020-02-09
 ### Changed
 * Simplify deploy command
