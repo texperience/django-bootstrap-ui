@@ -1,11 +1,11 @@
 Welcome to django-bootstrap-ui's documentation!
 ===============================================
 
-.. image:: https://img.shields.io/travis/texperience/django-bootstrap-ui.svg?branch=master
-    :target: https://travis-ci.org/texperience/django-bootstrap-ui
+.. image:: https://gitlab.com/texperience/django-bootstrap-ui/badges/master/pipeline.svg
+    :target: https://gitlab.com/texperience/django-bootstrap-ui/pipelines
 
-.. image:: https://img.shields.io/coveralls/texperience/django-bootstrap-ui/master.svg
-    :target: https://coveralls.io/r/texperience/django-bootstrap-ui?branch=master
+.. image:: https://gitlab.com/texperience/django-bootstrap-ui/badges/master/coverage.svg
+    :target: https://gitlab.com/texperience/django-bootstrap-ui/-/jobs
 
 .. image:: https://img.shields.io/pypi/v/django-bootstrap-ui.svg
     :target: https://pypi.python.org/pypi/django-bootstrap-ui
