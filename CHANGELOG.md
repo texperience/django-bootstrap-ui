@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 ### Added
 * Add support for Python 3.7 and 3.8
 * Add support for Django 2.2
+* Initialise continuous integration with gitlab
 
 ### Changed
 * Rename bootstrap 3 template for clarification
