@@ -13,7 +13,6 @@ install_requires = [
 testing_extras = [
     'coverage>=5.0,<6.0',
     'flake8>=3.7,<4.0',
-    'isort>=4.3,<5.0',
     'tox>=3.14,<4.0',
 ]
 
