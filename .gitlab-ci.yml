@@ -2,10 +2,11 @@ image: python
 
 stages:
   - test
+  - build
 
 before_script:
   - python --version
-  - pip install tox
+  - pip install tox wheel
 
 py36-dj22:
   image: python:3.6
@@ -25,3 +26,10 @@ py38-dj22:
 flake8:
   stage: test
   script: tox -e flake8
+
+wheel:
+  stage: build
+  script: python setup.py bdist_wheel
+  artifacts:
+    paths:
+      - dist/
