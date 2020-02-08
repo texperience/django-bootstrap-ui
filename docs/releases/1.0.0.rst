@@ -5,3 +5,11 @@ All features, bug fixes as well as code cleanup and optimization changes are lis
 
 Features
 --------
+
+* Add support for Python 3.7 and 3.8
+* Add support for Django 2.2
+* Rename bootstrap 3 template for clarification
+* Remove support for Python 2.7, 3.3, 3.4 and 3.5
+* Remove support for Django 1.8, 1.9, 1.10 and 1.11
+* Remove bootstrap template tag api
+* Remove bootstrap component templates

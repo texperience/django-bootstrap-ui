@@ -30,7 +30,7 @@ Features
 * Latest Font Awesome integration (4.7.0)
 * Built-in Bootstrap and `Bootswatch`_ themes (3.3.7)
 * Extensive and up-to-date documentation
-* Mainstream Python (2.7, 3.3, 3.4, 3.5, 3.6) and Django (1.8, 1.9, 1.10, 1.11) support
+* Mainstream Python (3.6, 3.7, 3.8) and Django (2.2) support
 * Outstanding test coverage
 * Continuously integrated codebase
 
@@ -41,15 +41,11 @@ Technical requirements
 
 Below is the list of currently supported combinations of Django and Python:
 
-+------------+------------+--------------------+
-| #          | Django     | Python             |
-+============+============+====================+
-| 1          | 1.8        | 2.7, 3.3, 3.4, 3.5 |
-+------------+------------+--------------------+
-| 2          | 1.9, 1.10  | 2.7, 3.4, 3.5      |
-+------------+------------+--------------------+
-| 3          | 1.11       | 2.7, 3.4, 3.5, 3.6 |
-+------------+------------+--------------------+
++---+--------+---------------+
+| # | Django | Python        |
++===+========+===============+
+| 1 | 2.2    | 3.6, 3.7, 3.8 |
++---+--------+---------------+
 
 Installation
 ------------

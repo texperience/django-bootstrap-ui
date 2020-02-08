@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.template.loader import get_template
 from django.test import RequestFactory, TestCase
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 class TemplatesTest(TestCase):
@@ -49,11 +49,11 @@ class ThemingTest(TestCase):
         self.request = RequestFactory().get('/')
 
         # Provide template paths
-        self.template_assignment_tags = get_template('assignmenttags.html')
+        self.template_helper_tags = get_template('helpertags.html')
         self.url_set_theme_view = reverse('set_theme')
 
     def test_theme_in_session_is_set(self):
-        with self.settings(MIDDLEWARE_CLASSES=('django.contrib.sessions.middleware.SessionMiddleware',)):
+        with self.settings(MIDDLEWARE=('django.contrib.sessions.middleware.SessionMiddleware',)):
             self.client.post(self.url_set_theme_view, {'theme': 'bootstrap-theme-in-session'})
             self.assertEqual(self.client.session['DJANGO_BOOTSTRAP_UI_THEME'], 'bootstrap-theme-in-session')
 
@@ -74,19 +74,19 @@ class ThemingTest(TestCase):
 
     def test_get_value_from_session_is_ok(self):
         self.request.session = {'DJANGO_BOOTSTRAP_UI_THEME': 'bootstrap-theme-in-session'}
-        rendered = self.template_assignment_tags.render({'request': self.request})
+        rendered = self.template_helper_tags.render({'request': self.request})
         self.assertIn('Theme|bootstrap-theme-in-session', rendered)
 
     def test_get_value_from_cookie_is_ok(self):
         self.request.COOKIES = {'DJANGO_BOOTSTRAP_UI_THEME': 'bootstrap-theme-in-cookies'}
-        rendered = self.template_assignment_tags.render({'request': self.request})
+        rendered = self.template_helper_tags.render({'request': self.request})
         self.assertIn('Theme|bootstrap-theme-in-cookies', rendered)
 
     def test_get_value_from_settings_is_ok(self):
         with self.settings(DJANGO_BOOTSTRAP_UI_THEME='bootstrap-theme-in-settings'):
-            rendered = self.template_assignment_tags.render({'request': self.request})
+            rendered = self.template_helper_tags.render({'request': self.request})
             self.assertIn('Theme|bootstrap-theme-in-settings', rendered)
 
     def test_get_value_default_is_ok(self):
-        rendered = self.template_assignment_tags.render({'request': self.request})
+        rendered = self.template_helper_tags.render({'request': self.request})
         self.assertIn('Theme|bootstrap-theme-default', rendered)
