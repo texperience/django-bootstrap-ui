@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog], and this project adheres to [Semantic Versioning][semver].
 
-## [Unreleased]
+## [1.0.0] - 2020-02-08
 ### Added
 * Add support for Python 3.7 and 3.8
 * Add support for Django 2.2
