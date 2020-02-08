@@ -55,7 +55,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'django-bootstrap-ui'
-copyright = u'2015, Timo Rieber'
+copyright = u'2020, Timo Rieber'
 author = u'Timo Rieber'
 
 # The version info for the project you're documenting, acts as replacement for
