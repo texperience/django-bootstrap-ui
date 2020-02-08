@@ -6,7 +6,7 @@ django-bootstrap-ui enables you to quickly prepare your page for Bootstrap and p
 HTML5 skeleton
 --------------
 
-This is our root template (``html5-skeleton.html``) with a minimalistic and clean HTML5 skeleton. It comes with a well-thought-out block structure as follows, but is not meant to be extended directly. Extend the `Bootstrap skeleton`_ instead.
+This is our root template (``html5-skeleton.html``) with a minimalistic and clean HTML5 skeleton. It comes with a well-thought-out block structure as follows, but is not meant to be extended directly. Extend the `Bootstrap 3 skeleton`_ instead.
 
 head-meta
 *********
