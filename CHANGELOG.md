@@ -9,9 +9,11 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 * Add support for Django 2.2
 * Initialise continuous integration with gitlab
 * Build distribution after success in test stage
+* Deploy build artifacts on tagged commits to pypi
 
 ### Changed
 * Rename bootstrap 3 template for clarification
+* Move project to gitlab
 
 ### Removed
 * Remove support for Python 2.7, 3.3, 3.4 and 3.5

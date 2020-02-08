@@ -28,7 +28,7 @@ setup(
     description='This aims to be a powerful Django app to ease the integration of the popular Bootstrap UI framework'
                 ' (http://getbootstrap.com).',
     long_description=open('README.rst').read(),
-    url='https://github.com/texperience/django-bootstrap-ui',
+    url='https://gitlab.com/texperience/django-bootstrap-ui',
     author='Timo Rieber',
     author_email='trieber@texperience.de',
     install_requires=install_requires,

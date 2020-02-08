@@ -3,10 +3,11 @@ image: python
 stages:
   - test
   - build
+  - deploy
 
 before_script:
   - python --version
-  - pip install tox wheel
+  - pip install tox twine wheel
 
 py36-dj22:
   image: python:3.6
@@ -33,3 +34,9 @@ wheel:
   artifacts:
     paths:
       - dist/
+
+pypi:
+  stage: deploy
+  script: twine upload --config-file "$PYPIRC" dist/*
+  only:
+    - tags

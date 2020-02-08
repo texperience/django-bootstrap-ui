@@ -1,5 +1,0 @@
-include LICENSE
-include README.rst
-recursive-include bootstrap_ui *
-recursive-exclude * __pycache__
-recursive-exclude * *.py[co]

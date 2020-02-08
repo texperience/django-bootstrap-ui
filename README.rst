@@ -1,11 +1,11 @@
 Welcome to django-bootstrap-ui
 ==============================
 
-.. image:: https://img.shields.io/travis/texperience/django-bootstrap-ui.svg?branch=master
-    :target: https://travis-ci.org/texperience/django-bootstrap-ui
+.. image:: https://gitlab.com/texperience/django-bootstrap-ui/badges/master/pipeline.svg
+    :target: https://gitlab.com/texperience/django-bootstrap-ui/pipelines
 
-.. image:: https://img.shields.io/coveralls/texperience/django-bootstrap-ui/master.svg
-    :target: https://coveralls.io/r/texperience/django-bootstrap-ui?branch=master
+.. image:: https://gitlab.com/texperience/django-bootstrap-ui/badges/master/coverage.svg
+    :target: https://gitlab.com/texperience/django-bootstrap-ui/-/jobs
 
 .. image:: https://img.shields.io/pypi/v/django-bootstrap-ui.svg
     :target: https://pypi.python.org/pypi/django-bootstrap-ui
@@ -103,10 +103,10 @@ Continue reading in our `detailed documentation <https://django-bootstrap-ui.rea
 Code and contribution
 ---------------------
 
-The code is open source and released under the `ISC License (ISCL)`_. It is available on `GitHub`_ and follows the guidelines about `Semantic Versioning`_ for transparency within the release cycle and backward compatibility whenever possible.
+The code is open source and released under the `ISC License (ISCL)`_. It is available on `Gitlab`_ and follows the guidelines about `Semantic Versioning`_ for transparency within the release cycle and backward compatibility whenever possible.
 
 All contributions are welcome, whether bug reports, code contributions and reviews, documentation or feature requests.
 
 .. _ISC License (ISCL): http://en.wikipedia.org/wiki/ISC_license
 .. _Semantic Versioning: http://semver.org/
-.. _GitHub: https://github.com/texperience/django-bootstrap-ui
+.. _Gitlab: https://gitlab.com/texperience/django-bootstrap-ui
