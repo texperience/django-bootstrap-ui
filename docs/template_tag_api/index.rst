@@ -1,18 +1,23 @@
 Template tag API
 ================
 
-If the predefined templates do not fit your needs you can just use django-bootstrap-ui's template tags on which our own templates are built on. There are two sort of tags:
+Some utilities and helper tags to make your and our lifes easier.
 
-#. :doc:`components/index`
+get_value_from_session_or_cookie
+--------------------------------
 
-   Generate your own, customized Bootstrap elements using these template tags.
+Returns a value for a given key from a user's session or cookie with fallback to global settings:
 
-#. :doc:`utilities/index`
+#. Check ``request.session`` for ``key``
+#. Check ``request.COOKIES`` for ``key``
+#. Check ``settings.py`` for ``key``
+#. Fall back to ``''``
 
-   These tags help you with.
+This tag is implemented as an assignment tag. Usage:
 
-.. toctree::
-   :maxdepth: 2
+.. code:: Django
 
-   components/index
-   utilities/index
+    {% load bootstrap_ui_tags %}
+
+    {% get_value_from_session_or_cookie 'DJANGO_BOOTSTRAP_UI_THEME' as theme %}
+    ...

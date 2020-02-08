@@ -25,11 +25,10 @@ django-bootstrap-ui aims to be a powerful Django app to ease the integration of 
 Features
 --------
 
+* Basic HTML5 template (3.3.7)
 * Full-featured Bootstrap 3 template (3.3.7)
 * Latest Font Awesome integration (4.7.0)
 * Built-in Bootstrap and `Bootswatch`_ themes (3.3.7)
-* Ready-to-use Bootstrap component templates
-* Intuitive template tag API for generating valid Bootstrap markup
 * Extensive and up-to-date documentation
 * Mainstream Python (2.7, 3.3, 3.4, 3.5, 3.6) and Django (1.8, 1.9, 1.10, 1.11) support
 * Outstanding test coverage

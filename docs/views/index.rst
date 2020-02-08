@@ -51,4 +51,4 @@ Then use this url to provide the ``action`` attribute for your form:
         <button type="submit">Go!</button>
     </form>
 
-See :doc:`Apply themes <../templates/skeletons/index>` for valid theme identifiers.
+See :doc:`Apply themes <../templates/index>` for valid theme identifiers.

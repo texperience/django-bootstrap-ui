@@ -5,6 +5,8 @@ Unreleased
 ----------
 
 * Rename bootstrap 3 template for clarification
+* Remove bootstrap template tag api
+* Remove bootstrap component templates
 
 
 0.5.1 (2017-10-01)

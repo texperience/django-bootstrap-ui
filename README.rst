@@ -25,11 +25,10 @@ django-bootstrap-ui aims to be a powerful Django app to ease the integration of 
 Features
 --------
 
+* Basic HTML5 template (3.3.7)
 * Full-featured Bootstrap 3 template (3.3.7)
 * Latest Font Awesome integration (4.7.0)
 * Built-in Bootstrap and `Bootswatch`_ themes (3.3.7)
-* Ready-to-use Bootstrap component templates
-* Intuitive template tag API for generating valid Bootstrap markup
 * Extensive and up-to-date documentation
 * Mainstream Python (2.7, 3.3, 3.4, 3.5, 3.6) and Django (1.8, 1.9, 1.10, 1.11) support
 * Outstanding test coverage
@@ -102,53 +101,6 @@ You can style your page with Bootstrap or Bootswatch themes. Set ``DJANGO_BOOTST
 
     # django-bootstrap-ui settings
     DJANGO_BOOTSTRAP_UI_THEME = 'bootswatch-paper'
-
-Bootstrap component templates
-*****************************
-
-Render complete Bootstrap components by including our default implementations. Example:
-
-#. Provide a list of strings ``['alpha', 'beta', 'gamma']`` as template variable ``items``
-
-#. Include ``listgroup.html`` parameterized with ``type='list'`` and ``items=items``:
-
-    .. code:: Django
-
-        {% include 'bootstrap_ui/listgroup.html' with type='list' items=items only %}
-
-Template tag API
-****************
-
-Generate your own, customized Bootstrap elements using our template tags. Example:
-
-#. Load ``bootstrap_ui_tags`` in your template:
-
-    .. code:: Django
-
-        {% load bootstrap_ui_tags %}
-
-#. Use Bootstrap components through intuitive template tags:
-
-    .. code:: Django
-
-        {% listgroup %}
-            {% listgroupitem %}
-                Your raw text.
-            {% endlistgroupitem %}
-            {% listgroupitem %}
-                You may also use a {{ context_variable }}.
-            {% endlistgroupitem %}
-        {% endlistgroup %}
-
-#. Some Bootstrap components support different html tags, to change the default add a parameter:
-
-    .. code:: Django
-
-        {% listgroup use_tag="div" %}
-            ...
-            Your list group content goes here.
-            ...
-        {% endlistgroup %}
 
 Continue reading in our `detailed documentation <https://django-bootstrap-ui.readthedocs.org>`_ at readthedocs.org.
 
