@@ -4,6 +4,8 @@ Changelog
 Unreleased
 ----------
 
+* Rename bootstrap 3 template for clarification
+
 
 0.5.1 (2017-10-01)
 ------------------

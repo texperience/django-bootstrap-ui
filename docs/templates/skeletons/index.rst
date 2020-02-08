@@ -85,14 +85,14 @@ Provide additional ``<script>`` tags with javascript source references or inline
         <script src="js/your-lately-embedded-script.js" type="text/javascript"></script>
     {% endblock %}
 
-Bootstrap skeleton
-------------------
+Bootstrap 3 skeleton
+--------------------
 
-This template (``bootstrap-skeleton.html``) extends our `HTML5 skeleton`_ and provides Bootstrap support. Extend this to get a working, bootstraped page layout.
+This template (``bootstrap3-skeleton.html``) extends our `HTML5 skeleton`_ and provides Bootstrap 3 support. Extend this to get a working, bootstraped page layout.
 
 .. code:: Django
 
-    {% extends "bootstrap_ui/bootstrap-skeleton.html" %}
+    {% extends "bootstrap_ui/bootstrap3-skeleton.html" %}
 
 There are no additional blocks besides the above, the following ones are sensibly used by this template:
 

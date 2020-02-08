@@ -74,16 +74,16 @@ Installation
 Usage
 -----
 
-Bootstrap template
-******************
+Bootstrap 3 template
+********************
 
-Prepare your page for Bootstrap and provide your content:
+Prepare your page for Bootstrap 3 and provide your content:
 
-#. Extend ``bootstrap-skeleton.html`` in your base template:
+#. Extend ``bootstrap3-skeleton.html`` in your base template:
 
     .. code:: Django
 
-        {% extends "bootstrap_ui/bootstrap-skeleton.html" %}
+        {% extends "bootstrap_ui/bootstrap3-skeleton.html" %}
 
 #. Fill predefined blocks with your content:
 

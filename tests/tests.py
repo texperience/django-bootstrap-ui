@@ -339,7 +339,7 @@ class TemplatesTest(TestCase):
 
         # Provide template paths
         self.template_html5_skeleton = get_template('bootstrap_ui/html5-skeleton.html')
-        self.template_bootstrap_skeleton = get_template('bootstrap_ui/bootstrap-skeleton.html')
+        self.template_bootstrap3_skeleton = get_template('bootstrap_ui/bootstrap3-skeleton.html')
 
     def test_html5_skeleton_is_rendered(self):
         rendered = self.template_html5_skeleton.render({})
@@ -347,8 +347,8 @@ class TemplatesTest(TestCase):
             '<html lang="en"><head><meta charset="utf-8"><title>django-bootstrap-ui template</title></head>'
             '<body><h1>Hello, django-bootstrap-ui!</h1></body></html>', rendered)
 
-    def test_bootstrap_skeleton_is_rendered(self):
-        rendered = self.template_bootstrap_skeleton.render({'request': self.request})
+    def test_bootstrap3_skeleton_is_rendered(self):
+        rendered = self.template_bootstrap3_skeleton.render({'request': self.request})
         self.assertInHTML('<meta http-equiv="X-UA-Compatible" content="IE=edge">', rendered)
         self.assertInHTML('<meta name="viewport" content="width=device-width, initial-scale=1">', rendered)
         self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">', rendered)
@@ -357,15 +357,15 @@ class TemplatesTest(TestCase):
         self.assertInHTML('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>', rendered)
         self.assertNotIn('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">', rendered)
 
-    def test_bootstrap_skeleton_bootstrap_theme_is_rendered(self):
+    def test_bootstrap3_skeleton_bootstrap_theme_is_rendered(self):
         self.request.session = {'DJANGO_BOOTSTRAP_UI_THEME': 'bootstrap'}
-        rendered = self.template_bootstrap_skeleton.render({'request': self.request})
+        rendered = self.template_bootstrap3_skeleton.render({'request': self.request})
         self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">', rendered)
         self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">', rendered)
 
-    def test_bootstrap_skeleton_bootswatch_theme_is_rendered(self):
+    def test_bootstrap3_skeleton_bootswatch_theme_is_rendered(self):
         self.request.session = {'DJANGO_BOOTSTRAP_UI_THEME': 'bootswatch-paper'}
-        rendered = self.template_bootstrap_skeleton.render({'request': self.request})
+        rendered = self.template_bootstrap3_skeleton.render({'request': self.request})
         self.assertInHTML('<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet" type="text/css">', rendered)
         self.assertNotIn('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">', rendered)
         self.assertNotIn('<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">', rendered)
