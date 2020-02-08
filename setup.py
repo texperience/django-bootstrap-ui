@@ -13,9 +13,10 @@ install_requires = [
 
 # Testing dependencies
 testing_extras = [
-    'coverage>=4.0.3',
-    'flake8>=2.4.1',
-    'isort>=4.2.0',
+    'coverage>=5.0,<6.0',
+    'flake8>=3.7,<4.0',
+    'isort>=4.3,<5.0',
+    'tox>=3.14,<4.0',
 ]
 
 # Allow setup.py to be run from any path
