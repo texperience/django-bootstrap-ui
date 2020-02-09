@@ -68,5 +68,4 @@ Index
    templates/index
    template_tag_api/index
    views/index
-   reference/index
    releases/index

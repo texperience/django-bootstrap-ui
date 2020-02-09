@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 ### Changed
 * Simplify deploy command
 
+### Removed
+* Remove auto-documentation of tag reference
+
 ## [1.0.2] - 2020-02-09
 ### Fixed
 * Include necessary package data
