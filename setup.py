@@ -1,6 +1,6 @@
 import os
 
-from setuptools import find_packages, setup
+from setuptools import find_namespace_packages, setup
 
 from bootstrap_ui import __version__
 
@@ -22,7 +22,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='django-bootstrap-ui',
     version=__version__,
-    packages=find_packages(exclude=['tests', 'docs']),
+    packages=find_namespace_packages(exclude=['tests', 'docs']),
     include_package_data=True,
     license='ISC License (ISCL)',
     description='This aims to be a powerful Django app to ease the integration of the popular Bootstrap UI framework'
