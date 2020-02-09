@@ -27,8 +27,9 @@ copyright = '{year:d}, texperience'.format(year=datetime.now().year)
 author = 'Timo Rieber'
 
 # The short X.Y version
-version = __version__.split('.')
-release = '{}.{}'.format(version[0], version[1])
+versiontuple = __version__.split('.')
+version = __version__
+release = '{}.{}'.format(versiontuple[0], versiontuple[1])
 
 
 # -- General configuration ---------------------------------------------------
