@@ -4,6 +4,10 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+from datetime import datetime
+
+from bootstrap_ui import __version__
+
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -17,12 +21,14 @@
 
 # -- Project information -----------------------------------------------------
 
+# General information about the project
 project = 'django-bootstrap-ui'
-copyright = '2020, Timo Rieber'
+copyright = '{year:d}, texperience'.format(year=datetime.now().year)
 author = 'Timo Rieber'
 
-# The full version, including alpha/beta/rc tags
-release = '1.0.0'
+# The short X.Y version
+version = __version__.split('.')
+release = '{}.{}'.format(version[0], version[1])
 
 
 # -- General configuration ---------------------------------------------------
@@ -30,13 +36,16 @@ release = '1.0.0'
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
+
+# The master toctree document
 master_doc = 'index'
+
+# The suffix of source filenames
+source_suffix = '.rst'
+
+# List of patterns, relative to source directory, that match files and
+# directories to ignore when looking for source files
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
-
-# -- Options for HTML output -------------------------------------------------
-
-# The theme to use for HTML and HTML Help pages.  See the documentation for
-# a list of builtin themes.
-#
-html_theme = 'alabaster'
+# The name of the Pygments (syntax highlighting) style to use
+pygments_style = 'sphinx'
