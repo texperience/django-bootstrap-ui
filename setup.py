@@ -25,7 +25,7 @@ setup(
     packages=find_namespace_packages(exclude=['tests', 'docs']),
     include_package_data=True,
     license='ISC License (ISCL)',
-    description='This aims to be a powerful Django app to ease the integration of the popular Bootstrap UI framework'
+    description='django-bootstrap-ui simplifies the integration of the popular Bootstrap UI framework'
                 ' (http://getbootstrap.com).',
     long_description=open('README.rst').read(),
     url='https://gitlab.com/texperience/django-bootstrap-ui',
