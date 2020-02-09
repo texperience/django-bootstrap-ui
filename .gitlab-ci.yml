@@ -37,6 +37,6 @@ wheel:
 
 pypi:
   stage: deploy
-  script: twine upload --config-file "$PYPIRC" dist/*
+  script: twine upload dist/*
   only:
     - tags
